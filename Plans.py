@@ -79,43 +79,67 @@ login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/fo
 
 time.sleep(1)
 
-catgs_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[4]')
+plans_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[5]')
                                                   )
                        ).click()
 
-time.sleep(0.5)
-
-categ_type = get_user_input("(Carros, Motos, Trucks, Race, Drag, Peças, Serviços, Clássicos").title()
-
-categ_amount_str = get_user_input("How many categories?")
-categ_amount_int = int(categ_amount_str)
-
-category_map = {
-    "Carros": 1,
-    "Motos": 2,
-    "Trucks": 3,
-    "Race": 4,
-    "Drag": 5,
-    "Peças": 6,
-    "Serviços": 7,
-    "Clássicos": 8
-}
-
-num = category_map.get(categ_type)
-    
-open_categ = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{num}]/div[1]/div[2]')
-                                                )
-                    ).click()
-
-for _ in range(categ_amount_int):   
-    
-    add_categ = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{num}]/div[2]/div[1]')
+plan_amount_str = get_user_input("How many plans do you wish to create?")
+plan_amount_int = int(plan_amount_str)
+for _ in range(plan_amount_int):
+    add_plan = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[1]/div/button')
                                                     )
                         ).click()
-
-    register_catg()
     
-    time.sleep(0.5)
+    plan_name_input = get_user_input("Plan name                   ")
+    plan_name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
+                                                    )
+                        ).send_keys(plan_name_input)
+    
+    categ_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[3]/div[1]/div')
+                                                    )
+                        ).click()
+    
+    categ_choose = get_user_input("Todas, Carros, Clássicos, Motos, Trucks, Race").title()
+    
+    category_map = {
+        "Todas": 1,
+        "Carros": 2,
+        "Clássicos": 3,
+        "Motos": 4,
+        "Trucks": 5,
+        "Race": 6
+    }
+    num = category_map.get(categ_choose)
+
+    categ_option_click = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[4]/form/div[3]/div[1]/div[2]/div[{num}]')
+                                                    )
+                        ).click()
+    
+    subcateg_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[3]/div[2]/div')
+                                                    )
+                        ).click()
+    
+    subcateg_choose = get_user_input("Todas, Super esportivo, Clássicos, Placa preta, Premium, Esportivos").title()
+    
+    subcateg_map = {
+        "Todas": 1,
+        "Super esportivo": 2,
+        "Clássicos": 3,
+        "Placa preta": 4,
+        "Premium": 5,
+        "Esportivos": 6
+    }
+    num2 = subcateg_map.get(subcateg_choose)
+
+    subcateg_option_click = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[4]/form/div[3]/div[2]/div[2]/div[{num2}]')
+                                                    )
+                        ).click()
+    
+    sub_fee_input = get_user_input("Subscription fee value")
+    sub_fee = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="tax"]')
+                                                    )
+                        ).send_keys(sub_fee_input)
+
 
 # Close the browser
 driver.quit()
