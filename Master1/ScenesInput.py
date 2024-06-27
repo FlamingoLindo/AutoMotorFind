@@ -135,11 +135,13 @@ for _ in range(scnes_amount_int):
                                                 )
                     ).click()
     
-    time.sleep(1.4)
+    time.sleep(1)
     
-    activate_scene = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[2]/div[2]/div[2]/div[1]/div[2]/div/div')
-                                                )
-                    ).click()
+    switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM')
+                                                  )
+                       ).click()
+    
+    time.sleep(1)
     
     close_scene_choise = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{num2}]/div[1]')
                                                 )
