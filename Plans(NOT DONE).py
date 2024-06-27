@@ -140,6 +140,28 @@ for _ in range(plan_amount_int):
                                                     )
                         ).send_keys(sub_fee_input)
 
-
+    charge_input = get_user_input("How much do you want to charge?")
+    charge = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="charges"]')
+                                                    )
+                        ).send_keys(charge_input)
+    
+    time_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[5]/div/div/div')
+                                                           )
+                                ).click()
+    
+    time_input = get_user_input("Ano, Mês, Semestre, Única").title()
+    time_map = {
+        "Ano": 1,
+        "Mês": 2,
+        "Semestre": 3,
+        "Única": 4
+    }
+    num3 = subcateg_map.get(time_input)
+    
+    time_option_click = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[4]/form/div[5]/div/div/div[2]/div[{num3}]')
+                                                              )
+                                   ).click()
+    
+    
 # Close the browser
 driver.quit()
