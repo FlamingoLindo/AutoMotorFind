@@ -24,8 +24,8 @@ def get_user_input(prompt):
 banana = 1
 
 def register_catg():
-    catg_title = f"Subcategoria {banana}" 
-    catg_info = f"Texto informativo {banana}"
+    catg_title = f"Subcategoria {banana} {type}" 
+    catg_info = f"Texto informativo {banana} para {type}"
 
     car_catg_title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                     )
@@ -71,7 +71,20 @@ catgs_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/as
 
 time.sleep(0.5)
 
-categ_type = random.randint(1, 8)
+categ_type = 8
+
+category_map = {
+    1: "Carros",
+    2: "Motos",
+    3: "Trucks",
+    4: "Race",
+    5: "Drag",
+    6: "Peças",
+    7: "Serviços",
+    8: "Clássicos"
+}
+
+type = category_map.get(categ_type)
 
 categ_amount_str = get_user_input("How many categories?")
 categ_amount_int = int(categ_amount_str)
