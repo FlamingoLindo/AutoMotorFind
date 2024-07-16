@@ -71,7 +71,7 @@ catgs_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/as
 
 time.sleep(0.5)
 
-categ_type = 8
+categ_type = 7
 
 category_map = {
     1: "Carros",

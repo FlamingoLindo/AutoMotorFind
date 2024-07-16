@@ -83,65 +83,46 @@ plans_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/as
                                                   )
                        ).click()
 
-plan_amount_str = get_user_input("How many plans do you wish to create?")
+plan_amount_str = get_user_input("How many?")
 plan_amount_int = int(plan_amount_str)
+count = 1
 for _ in range(plan_amount_int):
     add_plan = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[1]/div/button')
                                                     )
                         ).click()
     
-    plan_name_input = get_user_input("Plan name                   ")
+    
     plan_name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                     )
-                        ).send_keys(plan_name_input)
+                        ).send_keys(f"Plan {count}")
     
     categ_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[3]/div[1]/div')
                                                     )
                         ).click()
     
-    categ_choose = get_user_input("Todas, Carros, Clássicos, Motos, Trucks, Race").title()
-    
-    category_map = {
-        "Todas": 1,
-        "Carros": 2,
-        "Clássicos": 3,
-        "Motos": 4,
-        "Trucks": 5,
-        "Race": 6
-    }
-    num = category_map.get(categ_choose)
-
-    categ_option_click = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[4]/form/div[3]/div[1]/div[2]/div[{num}]')
-                                                    )
-                        ).click()
+    categ_choose = random.randint(1, 6)  
+    categ_option_click = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({categ_choose})")
+                                )
+                            ).click()
     
     subcateg_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[3]/div[2]/div')
                                                     )
                         ).click()
     
-    subcateg_choose = get_user_input("Todas, Super esportivo, Clássicos, Placa preta, Premium, Esportivos").title()
+    subcateg_choose = random.randint(1, 6)
+    subcateg_option_click = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({subcateg_choose})")
+                                )
+                            ).click()
     
-    subcateg_map = {
-        "Todas": 1,
-        "Super esportivo": 2,
-        "Clássicos": 3,
-        "Placa preta": 4,
-        "Premium": 5,
-        "Esportivos": 6
-    }
-    num2 = subcateg_map.get(subcateg_choose)
-
-    subcateg_option_click = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[4]/form/div[3]/div[2]/div[2]/div[{num2}]')
-                                                    )
-                        ).click()
-    
-    sub_fee_input = get_user_input("Subscription fee value")
-    sub_fee = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="tax"]')
+    sub_fee_input = random.randint(1,9999999)
+    sub_fee = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="subscriptionFeeValue"]')
                                                     )
                         ).send_keys(sub_fee_input)
 
-    charge_input = get_user_input("How much do you want to charge?")
-    charge = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="charges"]')
+    charge_input = random.randint(1,9999999)
+    charge = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="chargingValue"]')
                                                     )
                         ).send_keys(charge_input)
     
@@ -149,18 +130,13 @@ for _ in range(plan_amount_int):
                                                            )
                                 ).click()
     
-    time_input = get_user_input("Ano, Mês, Semestre, Única").title()
-    time_map = {
-        "Ano": 1,
-        "Mês": 2,
-        "Semestre": 3,
-        "Única": 4
-    }
-    num3 = subcateg_map.get(time_input)
+    time_input = random.randint(1, 3)
+    time_option_click = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({time_input})")
+                                )
+                            ).click()
     
-    time_option_click = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[4]/form/div[5]/div/div/div[2]/div[{num3}]')
-                                                              )
-                                   ).click()
+    
     
     
 # Close the browser
