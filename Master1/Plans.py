@@ -36,26 +36,6 @@ def gera_parcela():
 def gera_aviso():
     return str(random.randint(1, 29))
 
-def register_catg():
-    car_catg_title_input = get_user_input("Category name       ")
-    car_catg_info_input = get_user_input("Category info        ")
-
-    car_catg_title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
-                                                    )
-                        ).send_keys(car_catg_title_input)
-
-    car_catg_info = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="text"]')
-                                                    )
-                        ).send_keys(car_catg_info_input)
-
-    register = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[2]/button[2]')
-                                                    )
-                        ).click()   
-    
-    done = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/div/button')
-                                                    )
-                        ).click() 
-
 driver_path = './chromedriver.exe'
 s = Service(driver_path)
 driver = webdriver.Chrome(service=s)  
@@ -100,7 +80,7 @@ for _ in range(plan_amount_int):
                                                     )
                         ).click()
     
-    categ_choose = random.randint(1, 6)  
+    categ_choose = random.randint(1, 8)  
     categ_option_click = wait.until(EC.presence_of_element_located
                             ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({categ_choose})")
                                 )
@@ -131,12 +111,63 @@ for _ in range(plan_amount_int):
                                 ).click()
     
     time_input = random.randint(1, 3)
-    time_option_click = wait.until(EC.presence_of_element_located
-                            ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({time_input})")
+    if time_input == 1:
+        pass
+    else:
+        time_option_click = wait.until(EC.presence_of_element_located
+                                ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({time_input})")
+                                    )
+                                ).click()
+
+    comission_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div[6]/div/div/div')
+                                                           )
+                                ).click()
+    
+    comission_input =1# random.randint(1, 3)
+    print(comission_input)
+    comission_option_click = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({comission_input})")
+                                ))
+    
+    if comission_input == 1:
+        pass
+    elif comission_input == 2:
+        comission_option_click.click()
+        random_percentage = random.randint(1,100)
+        percentage = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='commissionValue']")
+                                                    )
+                        ).send_keys(random_percentage)
+    elif comission_input == 3:
+        comission_option_click.click()
+        random_value2 = random.randint(1,999999)
+        value = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='valuePerSale']")
+                                                    )
+                        ).send_keys(random_value2)
+    
+    random_stock = random.randint(1,99999)
+    stock = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='stock']")
+                                                    )
+                        ).send_keys(random_stock)
+    
+    random_feature = random.randint(1,99999)
+    feature = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='featuredProducts']")
+                                                    )
+                        ).send_keys(random_feature)
+    
+    description = wait.until(EC.element_to_be_clickable((By.XPATH, "//textarea[@id='description']")
+                                                    )
+                        ).send_keys(f"Description {count}")
+    
+    done = wait.until(EC.presence_of_element_located
+                            ((By.CSS_SELECTOR, f".sc-5220e5de-6")
                                 )
                             ).click()
     
-    
+    done2 = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, f"/html/body/main/div/div/div[4]/div/button")
+                                )
+                            ).click()
+    count += 1
     
     
 # Close the browser
