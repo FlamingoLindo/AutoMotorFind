@@ -65,9 +65,18 @@ for _ in range(scnes_amount_int):
     pyautogui.write(image_path)
     pyautogui.press('enter')
 
+    type_ = random.randint(1,3)
+    name = ""
+    if type_ == 1:
+        name = "Eventos"
+    elif type_ == 2:
+        name = "Notícias"
+    elif type_ == 3:
+        name = "Vídeos cadastrados"
+        
     title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="title"]')
                                                   )
-                       ).send_keys(f"Titulo {banana}")
+                       ).send_keys(f"Titulo {banana} {name}")
     
     categ_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[4]/div')
                                                   )
@@ -109,7 +118,7 @@ for _ in range(scnes_amount_int):
                                                 )
                     ).click()
     
-    open_scene_choise = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_input}]/div[1]')
+    """open_scene_choise = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_input}]/div[1]')
                                                 )
                     ).click()
     
@@ -123,7 +132,7 @@ for _ in range(scnes_amount_int):
     
     close_scene_choise = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_input}]/div[1]')
                                                 )
-                    ).click()
+                    ).click()"""
     
     banana += 1
     

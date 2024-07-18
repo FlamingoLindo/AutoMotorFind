@@ -49,18 +49,19 @@ brands_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/a
                                                   )
                        ).click()
 
-choose = random.randint(1,2)
+choose = 1#random.randint(1,2)
 banana = 1
 if choose == 1:
-    categ_type = random.randint(1,8)
     
-    open_categ = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{categ_type}]/div[1]')
-                                                    )
-                        ).click()
-    
-    brand_input_str = get_user_input("How many brands?")
+    brand_input_str = get_user_input("How many?")
     brand_input_int = int(brand_input_str)
     for _ in range(brand_input_int):    
+        categ_type = random.randint(1,8)
+    
+        open_categ = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{categ_type}]/div[1]')
+                                                        )
+                            ).click()
+        
         add_brand_btn = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{categ_type}]/div[2]/div[1]')
                                                     )
                         ).click()
@@ -77,21 +78,25 @@ if choose == 1:
         title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="title"]')
                                                     )
                         ).send_keys(f"Marca {banana}")
-                                                                    
+
         register = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[1]/div/button[2]')
                                                   )
                        ).click()
+        
+        time.sleep(2)        
         
         done = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/div/button')
                                                   )
                        ).click()
             
-        switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM')
+        """switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM')
                                                   )
-                       ).click()
+                       ).click()"""
         
-        time.sleep(1.3)
-        
+        close_categ = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{categ_type}]/div[1]')
+                                                        )
+                            ).click()
+
         banana += 1
         
 elif choose == 2:
@@ -99,7 +104,7 @@ elif choose == 2:
                                                   )
                        ).click()
     
-    components_amount_str = get_user_input("How many components?")
+    components_amount_str = get_user_input("How many?")
     components_amount_int = int(components_amount_str)
     for _ in range(components_amount_int):
         add_component = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[2]/button')
@@ -109,7 +114,7 @@ elif choose == 2:
        
         component_title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="title"]')
                                                   )
-                       ).send_keys(f"Titulo {banana}")
+                       ).send_keys(f"Componente {banana}")
         
         register = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[5]/form/div[1]/div/button[2]')
                                                   )
@@ -119,9 +124,9 @@ elif choose == 2:
                                                   )
                        ).click()
         
-        switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM')
+        """switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM')
                                                   )
-                       ).click()
+                       ).click()"""
         
         time.sleep(1.3)
         banana += 1

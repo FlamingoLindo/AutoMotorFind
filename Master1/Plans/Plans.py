@@ -71,11 +71,6 @@ for _ in range(plan_amount_int):
                                                     )
                         ).click()
     
-    
-    plan_name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
-                                                    )
-                        ).send_keys(f"Plan {count}")
-    
     categ_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[3]/div[1]/div')
                                                     )
                         ).click()
@@ -95,6 +90,28 @@ for _ in range(plan_amount_int):
                             ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({subcateg_choose})")
                                 )
                             ).click()
+    
+    name = ""
+    if categ_choose == 1:
+        name = "Carros"
+    elif categ_choose ==2:
+        name = "Motos"
+    elif categ_choose ==3:
+        name = "Trucks"
+    elif categ_choose ==4:
+        name = "Race"
+    elif categ_choose ==5:
+        name = "Drag"
+    elif categ_choose ==6:
+        name = "Peças"
+    elif categ_choose ==7:
+        name = "Serviços"
+    elif categ_choose ==8:
+        name = "Clássicos"
+    
+    plan_name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
+                                                    )
+                        ).send_keys(f"Automatic Plan {name} {count}")
     
     sub_fee_input = random.randint(1,9999999)
     sub_fee = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="subscriptionFeeValue"]')
@@ -167,6 +184,7 @@ for _ in range(plan_amount_int):
                             ((By.XPATH, f"/html/body/main/div/div/div[4]/div/button")
                                 )
                             ).click()
+
     count += 1
     
     
