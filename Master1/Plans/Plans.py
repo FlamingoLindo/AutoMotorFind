@@ -9,8 +9,6 @@ import time
 from dotenv import load_dotenv
 import os
 import random
-import pyautogui
-import sys
 load_dotenv()
 
 def get_user_input(prompt):
@@ -36,6 +34,8 @@ def gera_parcela():
 def gera_aviso():
     return str(random.randint(1, 29))
 
+
+# Drive stuff
 driver_path = './chromedriver.exe'
 s = Service(driver_path)
 driver = webdriver.Chrome(service=s)  
@@ -44,53 +44,68 @@ driver.get(os.getenv('MASTER_URL'))
 
 wait = WebDriverWait(driver, 5)
 
-
+# Input email
 email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="email"]')
                                                     )
                          ).send_keys(os.getenv("MASTER_LOGIN"))
 
+# Input password
 password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="password"]')
                                                        )
                             ).send_keys(os.getenv("MASTER_PASSWORD"))
 
+# Click the login button
 login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/form/fieldset/button')
                                                   )
                        ).click()
 
 time.sleep(1)
 
+# Opesn the plans page
 plans_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[5]')
                                                   )
                        ).click()
 
+# Ask how many plans are going to be created
 plan_amount_str = get_user_input("How many?")
 plan_amount_int = int(plan_amount_str)
 count = 1
 for _ in range(plan_amount_int):
+    
+    # Opens the plan creation modal
     add_plan = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[1]/div/button')
                                                     )
                         ).click()
     
+    # Click at the category dropdown
     categ_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[3]/div[1]/div')
                                                     )
                         ).click()
     
+    # Randonmly choose the category
     categ_choose = random.randint(1, 8)  
+    
+    # Click at the choosen category
     categ_option_click = wait.until(EC.presence_of_element_located
                             ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({categ_choose})")
                                 )
                             ).click()
     
+    # Opens the subcategory dropdown
     subcateg_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[3]/div[2]/div')
                                                     )
                         ).click()
     
+    # Randonmly choose the subcategory
     subcateg_choose = random.randint(1, 6)
+    
+    # Click the choosen category
     subcateg_option_click = wait.until(EC.presence_of_element_located
                             ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({subcateg_choose})")
                                 )
                             ).click()
     
+    # Set up names
     name = ""
     if categ_choose == 1:
         name = "Carros"
@@ -109,77 +124,108 @@ for _ in range(plan_amount_int):
     elif categ_choose ==8:
         name = "Clássicos"
     
+    # Inputs the plan name 
     plan_name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                     )
                         ).send_keys(f"Automatic Plan {name} {count}")
     
+    # Randonmly generate fee value
     sub_fee_input = random.randint(1,9999999)
+    
+    # Inputs the random fee value
     sub_fee = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="subscriptionFeeValue"]')
                                                     )
                         ).send_keys(sub_fee_input)
 
+    # Randonmly generate charge value
     charge_input = random.randint(1,9999999)
+    
+    # Inputs the charge value
     charge = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="chargingValue"]')
                                                     )
                         ).send_keys(charge_input)
     
+    # Opens the time dropdown
     time_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[5]/div/div/div')
                                                            )
                                 ).click()
     
+    # Randonmly choose the time type
     time_input = random.randint(1, 3)
     if time_input == 1:
+        
+        # Ignore if the = 1
         pass
     else:
+        
+        # Choose the choosen time type
         time_option_click = wait.until(EC.presence_of_element_located
                                 ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({time_input})")
                                     )
                                 ).click()
 
+    # Opens the comission dropdown
     comission_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div[6]/div/div/div')
                                                            )
                                 ).click()
     
+    # Randonmly choose the comission 
     comission_input =1# random.randint(1, 3)
     print(comission_input)
+    
+    # Click the choosen comission type
     comission_option_click = wait.until(EC.presence_of_element_located
                             ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({comission_input})")
                                 ))
     
+    # Condions according to the comission type
     if comission_input == 1:
         pass
     elif comission_input == 2:
+        
+        # Click at the type and then inputs random percentage
         comission_option_click.click()
         random_percentage = random.randint(1,100)
         percentage = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='commissionValue']")
                                                     )
                         ).send_keys(random_percentage)
     elif comission_input == 3:
+        
+        # Click at the type and then inputs random value
         comission_option_click.click()
         random_value2 = random.randint(1,999999)
         value = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='valuePerSale']")
                                                     )
                         ).send_keys(random_value2)
     
+    # Random stock 
     random_stock = random.randint(1,99999)
+    
+    # Input random stock
     stock = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='stock']")
                                                     )
                         ).send_keys(random_stock)
     
+    # Random feature value
     random_feature = random.randint(1,99999)
+    
+    # Inputs feature value
     feature = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='featuredProducts']")
                                                     )
                         ).send_keys(random_feature)
     
+    # Input description
     description = wait.until(EC.element_to_be_clickable((By.XPATH, "//textarea[@id='description']")
                                                     )
                         ).send_keys(f"Description {count}")
     
+    # Click at done button
     done = wait.until(EC.presence_of_element_located
                             ((By.CSS_SELECTOR, f".sc-5220e5de-6")
                                 )
                             ).click()
     
+    # Confirm the creation button
     done2 = wait.until(EC.presence_of_element_located
                             ((By.XPATH, f"/html/body/main/div/div/div[4]/div/button")
                                 )
@@ -187,6 +233,6 @@ for _ in range(plan_amount_int):
 
     count += 1
     
-    
+get_user_input("DONE")
 # Close the browser
 driver.quit()

@@ -9,9 +9,9 @@ from selenium.webdriver.common.by import By
 import time
 from dotenv import load_dotenv
 import os
-
 load_dotenv()
 
+# Creates the register category function
 def register_category():
     catg_title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                        )
@@ -39,6 +39,7 @@ def get_user_input(prompt):
     user_input = simpledialog.askstring("Input", prompt)
     return user_input
 
+# Driver stuff
 driver_path = './chromedriver.exe'
 s = Service(driver_path)
 driver = webdriver.Chrome(service=s)
@@ -47,20 +48,24 @@ driver.get(os.getenv('MASTER_URL'))
 
 wait = WebDriverWait(driver, 5)
 
+# Email input
 email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="email"]')
                                                     )
                          ).send_keys(os.getenv("MASTER_LOGIN"))
 
+# Password input
 password_input = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="password"]')
                                                        )
                             ).send_keys(os.getenv("MASTER_PASSWORD"))
 
+# Clicks at the login button
 login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/form/fieldset/button')
                                                   )
                        ).click()
 
 time.sleep(1)
 
+# Opens the category button
 catgs_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[4]')
                                                   )
                        ).click()
@@ -115,6 +120,6 @@ for index, row in df.iterrows():
         
         catg.click()
 
-
+get_user_input("DONE")
 # Close the browser
 driver.quit()
