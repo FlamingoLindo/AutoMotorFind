@@ -1,5 +1,7 @@
 import unittest
 from appium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
 import time
@@ -25,26 +27,38 @@ class TestAppium(unittest.TestCase):
             self.driver.quit()
 
     def test_find_battery(self) -> None:
-        el = self.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.TextView[@content-desc="motorfind"]')
+        el = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@content-desc="motorfind"]'))
+        )
         el.click()
-        time.sleep(6)
-        register_btn = self.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.TextView[@text="Cadastrar"]').click()
-        
-        name = self.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.EditText[@text="Ex. José Santos"]')
+
+        register_btn = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@text="Cadastrar"]'))
+        ).click()
+
+        name = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Ex. José Santos"]'))
+        )
         name.click()
         name.send_keys("Nome")
-        
-        email = self.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.EditText[@text="Ex. nome@email.com"]')
+
+        email = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Ex. nome@email.com"]'))
+        )
         email.click()
         email.send_keys("email@gmail.com")
-        
-        phone = self.driver.find_element(by=AppiumBy.XPATH, value='//android.widget.EditText[@text="(00) 9 1234-56789"]')
+
+        phone = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="(00) 9 1234-56789"]'))
+        )
         phone.click()
         phone.send_keys("11987456321")
-        
-        next_btn = self.driver.find_element(by=AppiumBy.XPATH, value='//android.view.ViewGroup[@content-desc="Próximo"]/android.view.ViewGroup/android.view.View').click()
-        
-        time.sleep(12121212)
+
+        next_btn = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Próximo"]/android.view.ViewGroup/android.view.View'))
+        ).click()
+
+        time.sleep(10)  
         
         
 
