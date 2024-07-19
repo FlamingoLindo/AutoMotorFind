@@ -56,11 +56,59 @@ class TestAppium(unittest.TestCase):
 
         next_btn = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Próximo"]/android.view.ViewGroup/android.view.View'))
-        ).click()
+        )
+        
+        next_btn.click()
 
-        time.sleep(10)  
+        time.sleep(1.5)
         
+        cpf = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="000.000.000-00"]'))
+        )
+        cpf.click()
+        cpf.send_keys()  
         
+        cnpj = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="00.000.000/0000-00"]'))
+        )
+        cnpj.click()
+        cnpj.send_keys()  
+        
+        phone2 = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="(00) 9 1234-56789"]'))
+        )
+        phone2.click()
+        phone2.send_keys()
+        
+        next_btn.click()
+
+        time.sleep(1.5)
+        
+        cep = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="00000-000"]'))
+        )
+        cep.click()
+        cep.send_keys()
+        
+        num = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Número"]'))
+        )
+        num.click()
+        num.send_keys()
+        
+        next_btn.click()
+        
+        password1 = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '(//android.widget.EditText[@text="Senha@!23"])[1]'))
+        )
+        password1.click()
+        password1.send_keys('Aa12345678!')
+        
+        password2 = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.XPATH, '(//android.widget.EditText[@text="Senha@!23"])[2]'))
+        )
+        password2.click()
+        password2.send_keys('Aa12345678!')
 
 if __name__ == '__main__':
     unittest.main()
