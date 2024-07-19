@@ -26,11 +26,11 @@ class TestAppium(unittest.TestCase):
         if self.driver:
             self.driver.quit()
 
-    def test_find_battery(self) -> None:
-        el = WebDriverWait(self.driver, 10).until(
+    def create_account(self) -> None:
+        app = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@content-desc="motorfind"]'))
         )
-        el.click()
+        app.click()
 
         register_btn = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@text="Cadastrar"]'))
@@ -109,6 +109,10 @@ class TestAppium(unittest.TestCase):
         )
         password2.click()
         password2.send_keys('Aa12345678!')
+        
+        next_btn.click()
+        
+        
 
 if __name__ == '__main__':
     unittest.main()
