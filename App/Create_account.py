@@ -13,8 +13,8 @@ capabilities = dict(
     platformName='Android',
     automationName='uiautomator2',
     deviceName='Android',
-    language='en',
-    locale='US',
+    language='pt',
+    locale='BR',
 )
 
 
@@ -27,6 +27,9 @@ class TestAppium(unittest.TestCase):
     def tearDown(self) -> None:
         if self.driver:
             self.driver.quit()
+
+    def swipe_to_end(self):
+        self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=100)
 
     def test_create_account(self) -> None:
         el = WebDriverWait(self.driver, 10).until(
@@ -89,61 +92,91 @@ class TestAppium(unittest.TestCase):
         )
         num.send_keys('1')
         
-        actions = TouchAction(self.driver)
-        actions.press(x=500, y=1500).move_to(x=500, y=500).release().perform()
+        self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=100)
 
         next_btn3 = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
         ).click()
-        
+
         password1 = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((AppiumBy.XPATH, '(//android.widget.EditText[@text="Senha@!23"])[1]'))
         )
         password1.send_keys('Aa12345678!')
         
-        password2 = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '(//android.widget.EditText[@text="Senha@!23"])[2]'))
+        # Open password confirmation
+        self.driver.tap([(500, 830)], 100)
+        time.sleep(0.6)
+        # A
+        self.driver.tap([(111, 1884)])
+        # a
+        self.driver.tap([(111, 1884)])
+        # 1
+        self.driver.tap([(70, 1596)])
+        # 2
+        self.driver.tap([(164, 1596)])
+        # 3
+        self.driver.tap([(270, 1596)])
+        # 4
+        self.driver.tap([(382, 1596)])
+        # 5
+        self.driver.tap([(480, 1600)])
+        # 6
+        self.driver.tap([(580, 1600)])
+        # 7
+        self.driver.tap([(680, 1600)])
+        # 8
+        self.driver.tap([(780, 1600)])
+        # shift
+        self.driver.tap([(90, 2027)])
+        # !
+        self.driver.tap([(70, 1596)])
+
+        # Close keyboard
+        self.driver.tap([(720, 1160)], 100)
+
+        """password2 = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((AppiumBy.CLASS_NAME, 'android.view.ViewGroup'))
         )
-        password2.send_keys('Aa12345678!')
-        
+        password2.send_keys('Aa12345678!')"""
+
         next_btn4 = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(4)'))
         ).click()
-        
+
         car = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Carros"]/android.view.View'))
         ).click()
 
         classic = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Classicos"]/android.view.View'))
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Clássicos"]/android.view.ViewGroup'))
         ).click()
 
         restored = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Restaurados OEM"]/android.view.View'))
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Restaurados OEM"]/android.view.ViewGroup'))
         ).click()
 
         lane = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Pista"]/android.view.View'))
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Pista"]/android.view.ViewGroup'))
         ).click()
 
         race = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Race"]/android.view.View'))
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Race"]/android.view.ViewGroup'))
         ).click()
 
         bikes = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Motos"]/android.view.View'))
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Motos"]/android.view.ViewGroup'))
         ).click()
         
         drift = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Drift"]/android.view.View'))
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Drift"]/android.view.ViewGroup'))
         ).click()
 
         black = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Placa preta"]/android.view.View'))
+            EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Placa preta"]/android.view.ViewGroup'))
         ).click()
 
         next_btn5 = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(4)'))
+            EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(8)'))
         ).click()
 
         agree = WebDriverWait(self.driver, 10).until(
@@ -151,7 +184,7 @@ class TestAppium(unittest.TestCase):
         ).click()
 
         done_btn = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.ID, '00000000-0000-0256-ffff-ffff000002ef'))
+            EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
         ).click()
 
 if __name__ == '__main__':
