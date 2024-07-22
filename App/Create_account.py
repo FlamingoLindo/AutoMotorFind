@@ -115,6 +115,26 @@ class TestAppium(unittest.TestCase):
             ).click()
             time.sleep(1.5)
             
+            # Open country dropdown
+            country_dropdown = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Selecione o país, "]'))
+            ).click()
+
+            rand_country = random_country_func()
+            
+            # Search country
+            country_search= WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Buscar"]'))
+            ).send_keys(rand_country)
+            
+            time.sleep(1)
+            
+            # Select country
+            self.driver.tap([(255, 840)])
+            """country_select = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, f'new UiSelector().text("{rand_country}")'))
+            ).click()"""
+            
             # Inputs CEP (cant make a function that generates random CEPs)
             cep = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="00000-000"]'))
@@ -194,14 +214,14 @@ class TestAppium(unittest.TestCase):
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Clássicos"]/android.view.ViewGroup'))
             ).click()
 
-            # Restored
-            restored = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Restaurados OEM"]/android.view.ViewGroup'))
+            # Parts
+            parts = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Peças"]/android.view.ViewGroup'))
             ).click()
-
-            # Lane
-            lane = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Pista"]/android.view.ViewGroup'))
+            
+            # Bikes
+            bikes = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Motos"]/android.view.ViewGroup'))
             ).click()
 
             # Racing
@@ -209,19 +229,19 @@ class TestAppium(unittest.TestCase):
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Race"]/android.view.ViewGroup'))
             ).click()
 
-            # Bikes
-            bikes = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Motos"]/android.view.ViewGroup'))
+            # Drag
+            drag = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Drag"]/android.view.ViewGroup'))
             ).click()
             
-            # Drift
-            drift = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Drift"]/android.view.ViewGroup'))
+            # Trucks
+            truck = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Trucks"]/android.view.ViewGroup'))
             ).click()
 
-            # Black sign?
-            black = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Placa preta"]/android.view.ViewGroup'))
+            # Services
+            service = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Serviços"]/android.view.ViewGroup'))
             ).click()
 
             # Button click
