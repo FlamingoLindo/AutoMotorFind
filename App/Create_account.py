@@ -8,8 +8,9 @@ import customtkinter as tk
 from tkinter import simpledialog
 import random
 import time
-from Functions.cpf import gera_e_valida_cpf
-from Functions.cnpj import gera_cnpj
+from App.Functions.Rand_CPF import gera_e_valida_cpf
+from App.Functions.Rand_CPNJ import gera_cnpj
+from Functions.Get_country import random_country_func
 
 def get_user_input(prompt):
     root = tk.CTk()
