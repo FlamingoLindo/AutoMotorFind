@@ -50,33 +50,40 @@ login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/fo
 
 time.sleep(1)
 
-# Opens the scnes page
+# Opens the clients page
 users_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[6]')
                                                   )
                        ).click()
 
 time.sleep(1)
 
+# Finds amount of eye icons there are on the page
 eye_icons = driver.find_elements(By.CSS_SELECTOR, '.guehBu')
-print(len(eye_icons))
+
+# Loop for the amount of icons found
 for _ in range(len(eye_icons)):
     
+    # Click at the eye icon
     eye_icon = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.HPyke')
                                                   )
                        ).click()
     
+    # Click at the trash icon
     trash_icon = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.bbTOtk')
                                                   )
                        ).click()
     
+    # Inputs deletion reason
     reason = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.ciUGNx')
                                                   )
                        ).send_keys("Auto Delete")
     
+    # Click at the delte button
     delete_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.ceWOoL')
                                                   )
                        ).click()
     
+    # Click at the continue button
     continue_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.kVnpAj')
                                                   )
                        ).click()
