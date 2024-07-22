@@ -8,8 +8,8 @@ import customtkinter as tk
 from tkinter import simpledialog
 import random
 import time
-from App.Functions.Rand_CPF import gera_e_valida_cpf
-from App.Functions.Rand_CPNJ import gera_cnpj
+from Functions.Rand_CPF import gera_e_valida_cpf
+from Functions.Rand_CPNJ import gera_cnpj
 from Functions.Get_country import random_country_func
 
 def get_user_input(prompt):
@@ -42,6 +42,8 @@ class TestAppium(unittest.TestCase):
 
     def test_create_account(self) -> None:
         count = 1
+        
+        print(f"Creating account {count}")
         
         # Click at the motorfind icon the the 'task bar'
         el = WebDriverWait(self.driver, 10).until(
@@ -243,6 +245,8 @@ class TestAppium(unittest.TestCase):
             done_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(5)'))
             ).click()
+            
+            print(f"Account {count} created")
             
             count += 1
 
