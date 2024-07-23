@@ -25,9 +25,13 @@ password = 'Aa12345678!'
 capabilities = dict(
     platformName='Android',
     automationName='uiautomator2',
-    deviceName='Android',
+    deviceName='flamingo_lindo',
     language='pt',
-    locale='BR',
+    printPageSourceOnFindFailure = True,
+    eventTimings = True,
+    noReset = True,
+    appPackage = 'com.mestresdaweb.motorfind',
+    appActivity = 'com.mestresdaweb.motorfind.MainActivity'
 )
 
 appium_server_url = 'http://localhost:4723'
@@ -35,6 +39,7 @@ appium_server_url = 'http://localhost:4723'
 class TestAppium(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
+
 
     def tearDown(self) -> None:
         if self.driver:
@@ -45,11 +50,6 @@ class TestAppium(unittest.TestCase):
         
         print(f"Creating account {count}")
         
-        # Click at the motorfind icon the the 'task bar'
-        el = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@content-desc="motorfind"]'))
-        ).click()
-
         # Ask the amount of accounts to be created
         account_amount_str = get_user_input("How many?")
         account_amount_int = int(account_amount_str)
@@ -266,7 +266,7 @@ class TestAppium(unittest.TestCase):
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(5)'))
             ).click()
             
-            print(f"Account {count} created")
+            print(f"Account {count} created \n ------------------------")
             
             count += 1
 
