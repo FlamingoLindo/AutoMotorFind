@@ -8,7 +8,7 @@ def create_random_name():
 
     num = random.randint(0,999)
 
-    name = f"{letters}{num}"
+    name = f"{letters}{num}".lower()
     
     return name
 
