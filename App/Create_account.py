@@ -145,11 +145,9 @@ class TestAppium(unittest.TestCase):
             next_btn3 = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
             ).click()
-
-            time.sleep(0.6)
             
             # Inputs password (1)
-            password1 = WebDriverWait(self.driver, 5).until(
+            password1 = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '(//android.widget.EditText[@text="Senha@!23"])[1]'))
             ).send_keys(f'{password}')
             
