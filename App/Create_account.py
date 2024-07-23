@@ -40,7 +40,6 @@ class TestAppium(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
 
-
     def tearDown(self) -> None:
         if self.driver:
             self.driver.quit()
@@ -56,75 +55,69 @@ class TestAppium(unittest.TestCase):
         for _ in range(account_amount_int):
             
             # Print the iteration
-            print(f"Creating account {count}")
+            print(f"Creating account {count} 🔄️")
             
             # Open the client register page
-            register_btn = WebDriverWait(self.driver, 10).until(
+            register_btn = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@text="Cadastrar"]'))
             ).click()
 
             # Inputs the name
-            name = WebDriverWait(self.driver, 10).until(
+            name = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Ex. José Santos"]'))
-            )
-            name.send_keys(f"Cliente Automático {count}")
-
+            ).send_keys(f"Cliente Automático {count}")
+        
             # Inputs the email
-            email = WebDriverWait(self.driver, 10).until(
+            email = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Ex. nome@email.com"]'))
-            )
-            email.send_keys(f"email{count}@gmail.com")
+            ).send_keys(f"email{count}@gmail.com")
 
             # Generate random phone number (1)
             rand_phone = random.randint(11111111111, 99999999999)
             # Inputs the phone number (2)
-            phone = WebDriverWait(self.driver, 10).until(
+            phone = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="(00) 9 1234-56789"]'))
-            )
-            phone.send_keys(f"{rand_phone}")
-
+            ).send_keys(f"{rand_phone}")
+            
             # Button click
-            next_btn = WebDriverWait(self.driver, 10).until(
+            next_btn = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Próximo"]/android.view.ViewGroup/android.view.View'))
             ).click()
 
             time.sleep(1.5)
             
             # Inputs CPF
-            cpf = WebDriverWait(self.driver, 10).until(
+            cpf = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="000.000.000-00"]'))
-            )
-            cpf.send_keys(gera_e_valida_cpf())  
+            ).send_keys(gera_e_valida_cpf()) 
             
             # Inputs CNPJ
-            cnpj = WebDriverWait(self.driver, 10).until(
+            cnpj = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="00.000.000/0000-00"]'))
-            )
-            cnpj.send_keys(gera_cnpj())  
-            
+            ).send_keys(gera_cnpj())
+
             # Generate random phone number (2)
             rand_phone2 = random.randint(11111111111, 99999999999)
             # Inputs random phone number (2)
-            phone2 = WebDriverWait(self.driver, 10).until(
+            phone2 = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="(00) 9 1234-56789"]'))
-            )
-            phone2.send_keys(f'{rand_phone2}')
-            
+            ).send_keys(f'{rand_phone2}')
+                        
             # Button click
-            next_btn2 = WebDriverWait(self.driver, 10).until(
+            next_btn2 = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(4)'))
             ).click()
             time.sleep(1.5)
             
             # Open country dropdown
-            country_dropdown = WebDriverWait(self.driver, 10).until(
+            country_dropdown = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Selecione o país, "]'))
             ).click()
 
             rand_country = random_country_func()
             
             # Search country
-            country_search= WebDriverWait(self.driver, 10).until(
+            country_search= WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Buscar"]'))
             ).send_keys(rand_country)
             
@@ -134,32 +127,29 @@ class TestAppium(unittest.TestCase):
             self.driver.tap([(255, 840)])
               
             # Inputs CEP (cant make a function that generates random CEPs)
-            cep = WebDriverWait(self.driver, 10).until(
+            cep = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="00000-000"]'))
-            )
-            cep.send_keys('39408197')
-            
+            ).send_keys('39408197')
+
             # Generates random adress number
             rand_num = random.randint(1, 999)
             # Inputs random adress number
-            num = WebDriverWait(self.driver, 10).until(
+            num = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Número"]'))
-            )
-            num.send_keys(f'{rand_num}')
-            
+            ).send_keys(f'{rand_num}')
+
             # Swipes tot the bottom of the page, so appium can see the button
             self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=100)
 
             # Button click
-            next_btn3 = WebDriverWait(self.driver, 10).until(
+            next_btn3 = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
             ).click()
 
             # Inputs password (1)
-            password1 = WebDriverWait(self.driver, 10).until(
+            password1 = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '(//android.widget.EditText[@text="Senha@!23"])[1]'))
-            )
-            password1.send_keys(f'{password}')
+            ).send_keys(f'{password}')
             
             # Input password confirmation, has to be by tap, because I couldn't find a way for appium to input the password
             
@@ -197,74 +187,74 @@ class TestAppium(unittest.TestCase):
             # End of password confirmation tapping
 
             # Button click
-            next_btn4 = WebDriverWait(self.driver, 10).until(
+            next_btn4 = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(4)'))
             ).click()
 
             # Select interests
             # Car
-            car = WebDriverWait(self.driver, 10).until(
+            car = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Carros"]/android.view.View'))
             ).click()
 
             # Classic
-            classic = WebDriverWait(self.driver, 10).until(
+            classic = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Clássicos"]/android.view.ViewGroup'))
             ).click()
 
             # Parts
-            parts = WebDriverWait(self.driver, 10).until(
+            parts = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Peças"]/android.view.ViewGroup'))
             ).click()
             
             # Bikes
-            bikes = WebDriverWait(self.driver, 10).until(
+            bikes = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Motos"]/android.view.ViewGroup'))
             ).click()
 
             # Racing
-            race = WebDriverWait(self.driver, 10).until(
+            race = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Race"]/android.view.ViewGroup'))
             ).click()
 
             # Drag
-            drag = WebDriverWait(self.driver, 10).until(
+            drag = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Drag"]/android.view.ViewGroup'))
             ).click()
             
             # Trucks
-            truck = WebDriverWait(self.driver, 10).until(
+            truck = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Trucks"]/android.view.ViewGroup'))
             ).click()
 
             # Services
-            service = WebDriverWait(self.driver, 10).until(
+            service = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="Serviços"]/android.view.ViewGroup'))
             ).click()
 
             # Button click
-            next_btn5 = WebDriverWait(self.driver, 10).until(
+            next_btn5 = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(8)'))
             ).click()
 
             # Agree of terms and conditions
-            agree = WebDriverWait(self.driver, 10).until(
+            agree = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup'))
             ).click()
 
             # Click the accept button
-            accpet_btn = WebDriverWait(self.driver, 10).until(
+            accpet_btn = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
             ).click()
             
             time.sleep(1.5)
             
             # Close the registration modal, so it closes
-            done_btn = WebDriverWait(self.driver, 10).until(
+            done_btn = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(5)'))
             ).click()
             
-            print(f"Account {count} created \n ------------------------")
+            print(f"Account {count} created ✅ \n ------------------------")
             
             count += 1
 
