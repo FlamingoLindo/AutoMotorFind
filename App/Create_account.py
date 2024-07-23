@@ -131,10 +131,7 @@ class TestAppium(unittest.TestCase):
             
             # Select country
             self.driver.tap([(255, 840)])
-            """country_select = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, f'new UiSelector().text("{rand_country}")'))
-            ).click()"""
-            
+              
             # Inputs CEP (cant make a function that generates random CEPs)
             cep = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="00000-000"]'))
