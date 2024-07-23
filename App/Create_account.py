@@ -48,14 +48,15 @@ class TestAppium(unittest.TestCase):
     def test_create_account(self) -> None:
         count = 1
         
-        print(f"Creating account {count}")
-        
         # Ask the amount of accounts to be created
         account_amount_str = get_user_input("How many?")
         account_amount_int = int(account_amount_str)
         
         # For for the amount of accounts asked
         for _ in range(account_amount_int):
+            
+            # Print the iteration
+            print(f"Creating account {count}")
             
             # Open the client register page
             register_btn = WebDriverWait(self.driver, 10).until(
