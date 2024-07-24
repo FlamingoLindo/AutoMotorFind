@@ -80,6 +80,8 @@ class TestAppium(unittest.TestCase):
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
             ).click()
             
+            time.sleep(1)
+            
             print("First step done 🟢")
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)
@@ -101,11 +103,6 @@ class TestAppium(unittest.TestCase):
             
             time.sleep(0.5)
             
-            # Edit info
-            edit_info_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
-            ).click()
-            
             print("Second step done 🟢")
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)
@@ -113,57 +110,21 @@ class TestAppium(unittest.TestCase):
             print(e)
             
         try:
-            rand_phone = random.randint(11111111111, 99999999999)
-            # 
-            celphone = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]'))
-            )
-            celphone.clear()
-            celphone.send_keys(rand_phone)
-            
-            # 
-            cnpj = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(20)'))
-            )
-            cnpj.clear()
-            cnpj.send_keys(gera_cnpj())
-            
-            # 
-            telephone = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(21)'))
-            )
-            telephone.clear()
-            telephone.send_keys(rand_phone)
-            
-            # Swipe down (1)
-            self.driver.swipe(start_x=500, start_y=500, end_x=530, end_y=350, duration=80)
-            
-            # 
-            cep = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(16)'))
-            )
-            cep.clear()
-            cep.send_keys('39408197')
-            
-            #
-            rand_num = random.randint(1, 999) 
-            num = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(18)'))
-            )
-            num.clear()
-            num.send_keys(rand_num)
-            
-            # Swipe down (2)
-            self.driver.swipe(start_x=500, start_y=500, end_x=530, end_y=450, duration=80)
+            self.driver.swipe(start_x=500, start_y=1660, end_x=530, end_y=500, duration=80)
 
             # 
-            save_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
+            delete_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Excluir minha conta")'))
             ).click()
             
             # 
-            confirm = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(6)'))
+            confirm_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Excluir minha conta'))
+            ).click()
+            
+            # 
+            done_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
             ).click()
             
             print("Third step done 🟢")
