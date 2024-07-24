@@ -169,13 +169,13 @@ class TestAppium(unittest.TestCase):
                 ).send_keys(f'{rand_num}')
 
                 # Swipes to the bottom of the page, so Appium can see the button
-                self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=100)
+                self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
 
                 time.sleep(0.5)
                 
                 # Button click
                 next_btn3 = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
+                    EC.element_to_be_clickable((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
                 ).click()
                 
                 print("Third step done 🟢")
@@ -317,8 +317,6 @@ class TestAppium(unittest.TestCase):
             print(f"Account {count} created ✅ \n ------------------------")
             
             count += 1
-        
-        print("All accounts created 🤖")
-        
+                
 if __name__ == '__main__':
     unittest.main()
