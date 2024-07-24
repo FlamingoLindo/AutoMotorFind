@@ -7,7 +7,9 @@ from appium.webdriver.common.appiumby import AppiumBy
 import customtkinter as tk
 from tkinter import simpledialog
 import random
-import time
+import time  
+from datetime import datetime 
+
 from Functions.Rand_CPF import gera_e_valida_cpf
 from Functions.Rand_CPNJ import gera_cnpj
 from Functions.Get_country import random_country_func
@@ -20,6 +22,11 @@ def get_user_input(prompt):
     user_input = simpledialog.askstring("Input", prompt)
 
     return user_input
+
+def get_time():
+    date_time = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+    
+    return date_time
 
 password = 'Aa12345678!'
 
@@ -66,7 +73,7 @@ class TestAppium(unittest.TestCase):
             # Inputs the name
             name = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="Ex. José Santos"]'))
-            ).send_keys(create_random_name() + f' Automatico {count}')
+            ).send_keys(create_random_name() +  f' Automatico {count} ' + get_time())
         
             # Inputs the email
             email = WebDriverWait(self.driver, 10).until(
@@ -146,6 +153,8 @@ class TestAppium(unittest.TestCase):
             next_btn3 = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
             ).click()
+            
+            time.sleep(1.3)
             
             # Inputs password (1)
             password1 = WebDriverWait(self.driver, 10).until(
