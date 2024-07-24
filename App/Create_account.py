@@ -318,5 +318,7 @@ class TestAppium(unittest.TestCase):
             
             count += 1
         
+        print("All accounts created 🤖")
+        
 if __name__ == '__main__':
     unittest.main()
