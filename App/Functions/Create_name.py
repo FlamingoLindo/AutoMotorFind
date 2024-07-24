@@ -12,4 +12,3 @@ def create_random_name():
     name = f"{letters}{num}".lower()
     
     return name
-

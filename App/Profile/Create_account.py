@@ -10,6 +10,10 @@ import random
 import time  
 import os
 from datetime import datetime 
+import sys
+
+# Add the path to the directory containing the Functions module
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from Functions.Rand_CPF import gera_e_valida_cpf
 from Functions.Rand_CPNJ import gera_cnpj

@@ -7,10 +7,7 @@ def random_country_func():
         countries = json.load(file)
 
     random_country_index = random.randint(0, len(countries) - 1)
-
-    # Print the name of the country at the random index
-    # print(countries[random_country_index]['name'])
-
+    
     # Random country 
     random_country = countries[random_country_index]['name']
     
