@@ -196,34 +196,11 @@ class TestAppium(unittest.TestCase):
                 password1 = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Senha@!23").instance(0)'))
                 ).send_keys(f'{password}')
-                
-                # Input password confirmation, has to be by tap, because I couldn't find a way for Appium to input the password
-                # Open password confirmation
-                self.driver.tap([(500, 830)], 100)
-                time.sleep(0.1)  # Reduce sleep time
 
-                # Sequence of taps for "Aa12345678!"
-                taps = [
-                    (111, 1884),  # A
-                    (111, 1884),  # a
-                    (70, 1596),   # 1
-                    (164, 1596),  # 2
-                    (270, 1596),  # 3
-                    (382, 1596),  # 4
-                    (480, 1600),  # 5
-                    (580, 1600),  # 6
-                    (680, 1600),  # 7
-                    (780, 1600),  # 8
-                    (90, 2027),   # shift
-                    (70, 1596)    # !
-                ]
-
-                # Perform all taps in sequence
-                for tap in taps:
-                    self.driver.tap([tap])
-
-                # Close keyboard
-                self.driver.tap([(720, 1160)], 100)
+                # Inputs password (2)
+                password2 = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Senha@!23")'))
+                ).send_keys(f'{password}')
 
                 # Button click
                 next_btn4 = WebDriverWait(self.driver, 10).until(

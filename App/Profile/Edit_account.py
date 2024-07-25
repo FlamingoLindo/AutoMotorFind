@@ -10,7 +10,6 @@ import random
 import time  
 import os
 import sys
-from datetime import datetime 
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -18,10 +17,7 @@ load_dotenv()
 # Add the path to the directory containing the Functions module
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from Functions.Rand_CPF import gera_e_valida_cpf
 from Functions.Rand_CPNJ import gera_cnpj
-from Functions.Get_country import random_country_func
-from Functions.Create_name import create_random_name
 
 def get_user_input(prompt):
     root = tk.CTk()
@@ -34,7 +30,6 @@ def get_user_input(prompt):
 screenshot_dir = r'Images\Screenshot'
 os.makedirs(screenshot_dir, exist_ok=True)
 screenshot_path = os.path.join(screenshot_dir, 'screenshot.png')
-
 
 capabilities = dict(
     platformName='Android',
@@ -91,7 +86,7 @@ class TestAppium(unittest.TestCase):
             
             # Open profile
             profile_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.Button").instance(1)'))
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]'))
             ).click()
             
             # Open account information

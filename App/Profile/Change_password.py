@@ -10,9 +10,17 @@ import random
 import time  
 import os
 import sys
+from datetime import datetime 
 
 from dotenv import load_dotenv
 load_dotenv()
+
+# Add the path to the directory containing the Functions module
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from Functions.Rand_CPF import gera_e_valida_cpf
+from Functions.Rand_CPNJ import gera_cnpj
+from Functions.Create_name import create_random_name
 
 def get_user_input(prompt):
     root = tk.CTk()
@@ -49,7 +57,7 @@ class TestAppium(unittest.TestCase):
         if self.driver:
             self.driver.quit()
             
-    def test_edit_account(self) -> None:
+    def test_cahnge_password(self) -> None:
         try:
             # Wait untill the app has loaded
             WebDriverWait(self.driver, 20).until(
@@ -71,53 +79,60 @@ class TestAppium(unittest.TestCase):
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
             ).click()
             
-            time.sleep(1)
-            
             print("First step done 🟢")
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the first step 🔴")
             print(e)
-            
+
         try:
-            time.sleep(1.4)
-            
-            # Open profile
+            time.sleep(1)
+
+            # 
             profile_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]'))
             ).click()
-            
-            # Open account information
-            account_info = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(0)'))
+
+            #
+            change_password_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(2)'))
             ).click()
-            
-            time.sleep(0.5)
-            
+
             print("Second step done 🟢")
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the second step 🔴")
-            print(e)
-            
+            print(e)    
+    
         try:
-            self.driver.swipe(start_x=500, start_y=1660, end_x=530, end_y=500, duration=80)
+            #
+            current_password = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75").instance(0)'))
+            ).send_keys('Aa12345678!')
+            
+            #
+            new_password = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75").instance(0)'))
+            ).send_keys('12345678!Aa')
 
-            # 
-            delete_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Excluir minha conta")'))
-            ).click()
-            
-            # 
-            confirm_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Excluir minha conta'))
-            ).click()
-            
-            # 
-            done_btn = WebDriverWait(self.driver, 10).until(
+            #
+            new_password_confirmation = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75")'))
+            ).send_keys('12345678!Aa')
+
+            #
+            self.driver.swipe(start_x=500, start_y=2000, end_x=500, end_y=1314, duration=80)
+
+            #
+            continue_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
             ).click()
-            
+
+            #
+            continue_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
+            ).click()
+
             print("Third step done 🟢")
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)
