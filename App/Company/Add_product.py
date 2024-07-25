@@ -10,7 +10,6 @@ import random
 import time  
 import os
 import sys
-from datetime import datetime 
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -19,8 +18,6 @@ load_dotenv()
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from Functions.Rand_CPF import gera_e_valida_cpf
-from Functions.Rand_CPNJ import gera_cnpj
-from Functions.Create_name import create_random_name
 
 def get_user_input(prompt):
     root = tk.CTk()
@@ -49,6 +46,13 @@ capabilities = dict(
 
 appium_server_url = 'http://localhost:4723'
 
+
+CARD_NUM = "5260925819223282"
+CARD_EXP = "052026"
+CARD_CVV = "925"
+
+
+
 class TestAppium(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
@@ -56,8 +60,10 @@ class TestAppium(unittest.TestCase):
     def tearDown(self) -> None:
         if self.driver:
             self.driver.quit()
-            
-    def test_cahnge_password(self) -> None:
+
+    def test_edit_account(self) -> None:
+        count = 1
+        
         try:
             # Wait untill the app has loaded
             WebDriverWait(self.driver, 20).until(
@@ -79,62 +85,79 @@ class TestAppium(unittest.TestCase):
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
             ).click()
             
+            time.sleep(1)
+            
             print("First step done 🟢")
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the first step 🔴")
             print(e)
             raise  
-
+            
         try:
-            time.sleep(1)
-
             # 
-            profile_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]'))
+            company_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[1]'))
             ).click()
-
-            #
-            change_password_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(2)'))
+            
+            # 
+            my_products = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(3)'))
             ).click()
-
+            
             print("Second step done 🟢")
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the second step 🔴")
-            print(e) 
-            raise     
-    
-        try:
-            #
-            current_password = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75").instance(0)'))
-            ).send_keys('Aa12345678!')
+            print(e)
+            raise  
             
-            #
-            new_password = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75").instance(0)'))
-            ).send_keys('12345678!Aa')
-
-            #
-            new_password_confirmation = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75")'))
-            ).send_keys('12345678!Aa')
-
-            #
-            self.driver.swipe(start_x=500, start_y=2000, end_x=500, end_y=1314, duration=80)
-
-            #
-            continue_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
-            ).click()
-
-            #
-            continue_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
-            ).click()
-
+        try:
+            product_amount_str = get_user_input("How many?")
+            product_amount_int = int(product_amount_str)
+            for _ in range(product_amount_int):
+                # 
+                add_product = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(0)'))
+                ).click()
+                
+                # 
+                product_name = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Digite o nome do produto")'))
+                ).send_keys(f'Auto Product {count}')
+                
+                # 
+                product_quantity = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("1")'))
+                ).send_keys(count)
+                
+                #
+                rand_value = random.randint(5, 99999999)
+                # 
+                product_value = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="R$ 00,00"]'))
+                ).send_keys(rand_value)
+                
+                # 
+                category = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a categoria, '))
+                ).click()
+                
+                # 
+                sub_category = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a subcategoria, '))
+                ).click()
+                
+                # 
+                product_is = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Novo, '))
+                ).click()
+                
+                
+            
+    
+                count += 1
+            
             print("Third step done 🟢")
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)

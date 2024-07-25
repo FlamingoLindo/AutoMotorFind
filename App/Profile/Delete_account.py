@@ -78,6 +78,7 @@ class TestAppium(unittest.TestCase):
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the first step 🔴")
             print(e)
+            raise  
             
         try:
             time.sleep(1.4)
@@ -99,6 +100,7 @@ class TestAppium(unittest.TestCase):
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the second step 🔴")
             print(e)
+            raise  
             
         try:
             self.driver.swipe(start_x=500, start_y=1660, end_x=530, end_y=500, duration=80)
@@ -123,6 +125,7 @@ class TestAppium(unittest.TestCase):
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the third step 🔴")
             print(e)
+            raise  
 
             
                 
