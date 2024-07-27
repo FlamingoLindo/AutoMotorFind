@@ -40,6 +40,7 @@ capabilities = dict(
     printPageSourceOnFindFailure = True,
     eventTimings = True,
     noReset = True,
+    enableMultiWindows = True,
     appPackage = 'com.mestresdaweb.motorfind',
     appActivity = 'com.mestresdaweb.motorfind.MainActivity'
 )
@@ -138,24 +139,113 @@ class TestAppium(unittest.TestCase):
                     EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="R$ 00,00"]'))
                 ).send_keys(rand_value)
                 
-                # 
+                """# 
                 category = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a categoria, '))
-                ).click()
-                
-                # 
+                )
+                category.click()"""
+
+                """# 
                 sub_category = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a subcategoria, '))
-                ).click()
+                )
+                sub_category.click()"""
+
+                #
+                self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
                 
+                #
+                add_photo_btn = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
+                ).click()
+
+                #
+                albuns = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Álbuns'))
+                )
+                albuns.click()
+
+                #
+                favorites = WebDriverWait(self.driver, 10).until(
+                            EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.google.android.providers.media.module:id/icon_thumbnail").instance(0)'))
+                        )
+                favorites.click()
+                
+                #
+                image = WebDriverWait(self.driver, 10).until(
+                            EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.google.android.providers.media.module:id/icon_thumbnail").instance(0)'))
+                        )
+                image.click()
+
+                """# 
+                negotiaton = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a subcategoria, '))
+                ).click()"""
+
+                #
+                self.driver.swipe(start_x=500, start_y=700, end_x=500, end_y=1600, duration=80)
+
                 # 
-                product_is = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Novo, '))
+                details_btn = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Detalhes'))
                 ).click()
+
+                """# 
+                brand = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a marca do produto, '))
+                ).click()"""
                 
-                
-            
-    
+                #
+                rand_km = random.randint(0, 9999)
+                # 
+                km = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 Km")'))
+                ).send_keys(rand_km)
+
+                #
+                rand_year = random.randint(1980, 2025)
+                # 
+                km = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("0000")'))
+                ).send_keys(rand_km)
+
+                # 
+                color = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("0000")'))
+                ).send_keys(f"Auto color {count}")
+
+                #
+                rand_speed = random.randint(200, 300)
+                # 
+                speed = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 km/h")'))
+                ).send_keys(rand_km)
+
+                #
+                rand_torque = random.randint(1, 999)
+                # 
+                torque = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 Nm")'))
+                ).send_keys(rand_torque)
+
+                #
+                self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
+
+                # 
+                link = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("www.linkdoproduto.com/categoria/subcategoria/produto01")'))
+                ).send_keys("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+
+                # 
+                description = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Descreva o que contém na embalagem do produto")'))
+                ).send_keys(f"Auto descriptions {count}")
+
+                # 
+                done = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
+                ).click()
+
                 count += 1
             
             print("Third step done 🟢")
