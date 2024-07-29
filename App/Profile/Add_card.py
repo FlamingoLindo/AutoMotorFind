@@ -113,42 +113,42 @@ class TestAppium(unittest.TestCase):
             raise  
             
         try:
-            # 
+            # Click the add card button
             add_card_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(0)'))
             ).click()
             
-            # 
+            # Input card name
             card_name = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex. José A V Andrade")'))
             ).send_keys("NOME CARTAO")
             
-            # 
+            # input card number
             card_num = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("1234-5678-9012-3456")'))
             ).send_keys(CARD_NUM)
             
-            # 
+            # Input card expiration date
             card_exp = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("00/00")'))
             ).send_keys(CARD_EXP)
             
-            # 
+            # Input card cvv
             cvv = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000")'))
             ).send_keys(CARD_CVV)
             
-            # 
+            # Input random CPF
             cpf = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("23800247828")'))
             ).send_keys(gera_e_valida_cpf())
             
-            # 
+            # Click the save button
             save = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
             ).click()
             
-            # 
+            # Closes creation modal
             continue_modal = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
             ).click()

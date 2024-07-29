@@ -113,7 +113,7 @@ class TestAppium(unittest.TestCase):
             raise  
             
         try:
-            #
+            # Swipe to the bottom of the page
             self.driver.swipe(start_x=500, start_y=1900, end_x=500, end_y=1242, duration=80)
             
             

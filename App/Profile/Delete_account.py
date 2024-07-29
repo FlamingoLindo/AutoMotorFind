@@ -105,17 +105,17 @@ class TestAppium(unittest.TestCase):
         try:
             self.driver.swipe(start_x=500, start_y=1660, end_x=530, end_y=500, duration=80)
 
-            # 
+            # Click the delete button
             delete_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Excluir minha conta")'))
             ).click()
             
-            # 
+            # Confirm deletion
             confirm_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Excluir minha conta'))
             ).click()
             
-            # 
+            # Close modal
             done_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
             ).click()

@@ -89,12 +89,12 @@ class TestAppium(unittest.TestCase):
         try:
             time.sleep(1)
 
-            # 
+            # Open progile page
             profile_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]'))
             ).click()
 
-            #
+            # Click the change password button
             change_password_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(2)'))
             ).click()
@@ -107,30 +107,30 @@ class TestAppium(unittest.TestCase):
             raise     
     
         try:
-            #
+            # Input currente password
             current_password = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75").instance(0)'))
             ).send_keys('Aa12345678!')
             
-            #
+            # Input new password
             new_password = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75").instance(0)'))
             ).send_keys('12345678!Aa')
 
-            #
+            # Input new password confirmation
             new_password_confirmation = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75")'))
             ).send_keys('12345678!Aa')
 
-            #
+            # Swipe to the bottom of the page
             self.driver.swipe(start_x=500, start_y=2000, end_x=500, end_y=1314, duration=80)
 
-            #
+            # Click the continue button
             continue_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
             ).click()
 
-            #
+            # Close modal
             continue_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
             ).click()
