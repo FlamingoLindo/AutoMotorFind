@@ -211,7 +211,7 @@ class TestAppium(unittest.TestCase):
 
                 # 
                 color = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("0000")'))
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex. Preto")'))
                 ).send_keys(f"Auto color {count}")
 
                 #
@@ -227,6 +227,13 @@ class TestAppium(unittest.TestCase):
                 torque = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 Nm")'))
                 ).send_keys(rand_torque)
+                
+                #
+                rand_power = random.randint(1, 9999)
+                # 
+                power = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 PS")'))
+                ).send_keys(rand_torque)
 
                 #
                 self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
@@ -240,7 +247,12 @@ class TestAppium(unittest.TestCase):
                 description = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Descreva o que contém na embalagem do produto")'))
                 ).send_keys(f"Auto descriptions {count}")
-
+                
+                # 
+                continue_btn = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Adicionar produto").instance(1)'))
+                ).click()
+                
                 # 
                 done = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
