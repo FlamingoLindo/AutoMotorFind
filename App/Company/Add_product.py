@@ -47,13 +47,6 @@ capabilities = dict(
 
 appium_server_url = 'http://localhost:4723'
 
-
-CARD_NUM = "5260925819223282"
-CARD_EXP = "052026"
-CARD_CVV = "925"
-
-
-
 class TestAppium(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
@@ -96,12 +89,12 @@ class TestAppium(unittest.TestCase):
             raise  
             
         try:
-            # 
+            # Open company menu
             company_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[1]'))
             ).click()
             
-            # 
+            # Open company's products
             my_products = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(3)'))
             ).click()
@@ -114,146 +107,149 @@ class TestAppium(unittest.TestCase):
             raise  
             
         try:
+            # Ask how many products are going to be made
             product_amount_str = get_user_input("How many?")
             product_amount_int = int(product_amount_str)
             for _ in range(product_amount_int):
-                # 
+                # Click the add product button
                 add_product = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(0)'))
                 ).click()
                 
-                # 
+                # Input product name
                 product_name = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Digite o nome do produto")'))
                 ).send_keys(f'Auto Product {count}')
                 
-                # 
+                # Input product quantity
                 product_quantity = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("1")'))
                 ).send_keys(count)
                 
-                #
+                # Generates random value
                 rand_value = random.randint(5, 99999999)
-                # 
+                # Input product random value
                 product_value = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="R$ 00,00"]'))
                 ).send_keys(rand_value)
                 
+                # Open category dropdown
                 """# 
                 category = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a categoria, '))
                 )
                 category.click()"""
 
+                # Open subcategory dropdown
                 """# 
                 sub_category = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a subcategoria, '))
                 )
                 sub_category.click()"""
 
-                #
+                # Swipes to the bottom of the page
                 self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
                 
-                #
+                # Click the 'add photo' button
                 add_photo_btn = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
                 ).click()
 
-                #
+                # Click the 'album' button
                 albuns = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Álbuns'))
                 )
                 albuns.click()
 
-                #
+                # Open the favorites album
                 favorites = WebDriverWait(self.driver, 10).until(
                             EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.google.android.providers.media.module:id/icon_thumbnail").instance(0)'))
                         )
                 favorites.click()
                 
-                #
+                # Click at the first image
                 image = WebDriverWait(self.driver, 10).until(
                             EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.google.android.providers.media.module:id/icon_thumbnail").instance(0)'))
                         )
                 image.click()
 
-                """# 
+                """# Open negotiation dropdown
                 negotiaton = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a subcategoria, '))
                 ).click()"""
 
-                #
+                # Swipes to the top of the page
                 self.driver.swipe(start_x=500, start_y=700, end_x=500, end_y=1600, duration=80)
 
-                # 
+                # Click the details button
                 details_btn = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Detalhes'))
                 ).click()
 
-                """# 
+                """# Open the brand dropdown
                 brand = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a marca do produto, '))
                 ).click()"""
                 
-                #
+                # Generates random kilometers
                 rand_km = random.randint(0, 9999)
-                # 
+                # Input random kilometer
                 km = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 Km")'))
                 ).send_keys(rand_km)
 
-                #
+                # Generate random year
                 rand_year = random.randint(1980, 2025)
-                # 
+                # Input random year
                 km = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("0000")'))
                 ).send_keys(rand_km)
 
-                # 
+                # Input year
                 color = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex. Preto")'))
                 ).send_keys(f"Auto color {count}")
 
-                #
+                # Generate random speed
                 rand_speed = random.randint(200, 300)
-                # 
+                # Inputs random speed
                 speed = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 km/h")'))
                 ).send_keys(rand_km)
 
-                #
+                # Generate random torque
                 rand_torque = random.randint(1, 999)
-                # 
+                # Input random torque
                 torque = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 Nm")'))
                 ).send_keys(rand_torque)
                 
-                #
+                # Generate random power
                 rand_power = random.randint(1, 9999)
-                # 
+                # Input random power
                 power = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 PS")'))
                 ).send_keys(rand_torque)
 
-                #
+                # Swipes to the bottom of the page
                 self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
 
-                # 
+                # Input link :Tomfoolery:
                 link = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("www.linkdoproduto.com/categoria/subcategoria/produto01")'))
                 ).send_keys("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
-                # 
+                # Input description
                 description = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Descreva o que contém na embalagem do produto")'))
                 ).send_keys(f"Auto descriptions {count}")
                 
-                # 
+                # Click the continue button
                 continue_btn = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Adicionar produto").instance(1)'))
                 ).click()
                 
-                # 
+                # Closes the modal 
                 done = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
                 ).click()
