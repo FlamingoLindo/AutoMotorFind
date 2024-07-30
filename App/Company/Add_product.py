@@ -214,7 +214,7 @@ class TestAppium(unittest.TestCase):
                         5: "Subcategoria 4 Clássicos"
                     }
                 }
-
+                # TRY TO DO BY THE INDEX INSTED OF MAP [0]
                 sub_type = sub_category_map[categ_type].get(sub_categ_type)
                 print(sub_type)
                 # Select subcategory item
