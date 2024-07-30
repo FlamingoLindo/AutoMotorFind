@@ -134,19 +134,94 @@ class TestAppium(unittest.TestCase):
                 ).send_keys(rand_value)
                 
                 # Open category dropdown
-                """# 
                 category = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a categoria, '))
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Escolha a categoria")'))
                 )
-                category.click()"""
+                category.click()
+                
+                categ_type = random.randint(1, 8)
+                category_map = {
+                    1: "Carros",
+                    2: "Motos",
+                    3: "Trucks",
+                    4: "Race",
+                    5: "Drag",
+                    6: "Peças",
+                    7: "Clássicos"
+                }
+
+                type = category_map.get(categ_type)
+
+                # Select category item
+                category_type = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.XPATH, f'//android.widget.TextView[@text="{type}"]'))
+                ).click()
 
                 # Open subcategory dropdown
-                """# 
                 sub_category = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a subcategoria, '))
-                )
-                sub_category.click()"""
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Escolha a subcategoria")'))
+                ).click()
 
+                sub_categ_type = random.randint(1, 5)
+                sub_category_map = {
+                    1: {
+                        1: "Especiais",
+                        2: "Premium",
+                        3: "Esportivos",
+                        4: "Premium2",
+                        5: "Peças de Carros"
+                    },
+                    2: {
+                        1: "Superbike",
+                        2: "Peças de motos",
+                        3: "Subcategoria 1 Motos",
+                        4: "Subcategoria 2 Motos",
+                        5: "Subcategoria 3 Motos"
+                    },
+                    3: {
+                        1: "Eurotruck",
+                        2: "Peças de Trucks",
+                        3: "Subcategoria 1 Trucks",
+                        4: "Subcategoria 2 Trucks",
+                        5: "Subcategoria 3 Trucks"
+                    },
+                    4: {
+                        1: "Carros de Alta Performance",
+                        2: "Peças de Race",
+                        3: "Subcategoria 1 Race",
+                        4: "Subcategoria 2 Race",
+                        5: "Subcategoria 3 Race"
+                    },
+                    5: {
+                        1: "drag",
+                        2: "Peças de Drag",
+                        3: "Subcategoria 1 Drag",
+                        4: "Subcategoria 2 Drag",
+                        5: "Subcategoria 3 Drag"
+                    },
+                    6: {
+                        1: "Peças de Carro",
+                        2: "Peças de Motos",
+                        3: "Peças de Trucks",
+                        4: "Peças de Race",
+                        5: "Peças de Drag"
+                    },
+                    7: {
+                        1: "Peças de Clássicos",
+                        2: "Subcategoria 1 Clássicos",
+                        3: "Subcategoria 2 Clássicos",
+                        4: "Subcategoria 3 Clássicos",
+                        5: "Subcategoria 4 Clássicos"
+                    }
+                }
+
+                sub_type = sub_category_map[categ_type].get(sub_categ_type)
+                print(sub_type)
+                # Select subcategory item
+                sub_category_item = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.XPATH, f'//android.widget.TextView[@text="{sub_type}"]'))
+                ).click()
+                
                 # Swipes to the bottom of the page
                 self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
                 
