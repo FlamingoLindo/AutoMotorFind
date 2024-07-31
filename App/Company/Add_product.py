@@ -156,7 +156,7 @@ class TestAppium(unittest.TestCase):
                 category_type = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.XPATH, f'//android.widget.TextView[@text="{type}"]'))
                 ).click()
-
+                
                 # Open subcategory dropdown
                 sub_category = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Escolha a subcategoria")'))
@@ -214,7 +214,6 @@ class TestAppium(unittest.TestCase):
                         5: "Subcategoria 4 Clássicos"
                     }
                 }
-                # TRY TO DO BY THE INDEX INSTED OF MAP [0]
                 sub_type = sub_category_map[categ_type].get(sub_categ_type)
                 print(sub_type)
                 # Select subcategory item
