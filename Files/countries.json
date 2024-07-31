@@ -5,11 +5,9 @@
   { "name": "Samoa", "code": "AS" },
   { "name": "Andorra", "code": "AD" },
   { "name": "Angola", "code": "AO" },
-  { "name": "Anguila", "code": "AI" },
   { "name": "Antígua e Barbuda", "code": "AG" },
   { "name": "Argentina", "code": "AR" },
   { "name": "Armênia", "code": "AM" },
-  { "name": "Aruba", "code": "AW" },
   { "name": "Austrália", "code": "AU" },
   { "name": "Áustria", "code": "AT" },
   { "name": "Azerbaijão", "code": "AZ" },
@@ -64,7 +62,6 @@
   { "name": "Geórgia", "code": "GE" },
   { "name": "Alemanha", "code": "DE" },
   { "name": "Gana", "code": "GH" },
-  { "name": "Gibraltar", "code": "GI" },
   { "name": "Grécia", "code": "GR" },
   { "name": "Granada", "code": "GD" },
   { "name": "Guatemala", "code": "GT" },
@@ -172,7 +169,7 @@
   { "name": "Uruguai", "code": "UY" },
   { "name": "Uzbequistão", "code": "UZ" },
   { "name": "Vietnã", "code": "VN" },
-  { "name": "Iémen", "code": "YE" },
+  { "name": "Iêmen", "code": "YE" },
   { "name": "Zâmbia", "code": "ZM" },
   { "name": "Zimbábue", "code": "ZW" }
 ]
