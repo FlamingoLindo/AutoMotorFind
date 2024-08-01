@@ -29,8 +29,10 @@ driver.get(os.getenv('MASTER_URL'))
 
 wait = WebDriverWait(driver, 5)
 
-# Sets image path
-image_path = r'C:\Users\josef\Desktop\AfterLifeDeath\MotorFind\AutoMotorFind\Images\logo.svg'
+# Sets images path
+image_paths_string  = os.getenv('IMAGE_PATHS')
+image_paths = image_paths_string.split(',')
+
 banana = 1
 
 # Input email
@@ -58,105 +60,106 @@ scnes_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/as
 # Ask how mant scenes are going to be created
 scnes_amount_str = get_user_input("How many scenes?")
 scnes_amount_int = int(scnes_amount_str)
+
+count_ev = 1
+count_no = 1
+count_vi = 1
+
 for _ in range(scnes_amount_int):
     
-    # Opesn the register scne button
-    register_scene = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[1]/div/div/button')
-                                                  )
-                       ).click()
+    # Opens the register scene button
+    register_scene = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[1]/div/div/button'))
+                                ).click()
     
     # Input image
-    scene_image = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[2]/label[2]')
-                                                  )
-                       ).click()
+    scene_image = wait.until(EC.presence_of_element_located((By.ID, 'image'))
+                             ).send_keys(random.choice(image_paths))
     time.sleep(1.3)
-    
-    pyautogui.write(image_path)
-    pyautogui.press('enter')
 
     # Random type
-    type_ = random.randint(1,3)
-    name = ""
-    if type_ == 1:
-        name = "Eventos"
-    elif type_ == 2:
-        name = "Notícias"
-    elif type_ == 3:
-        name = "Vídeos cadastrados"
-        
-    # Input title
-    title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="title"]')
-                                                  )
-                       ).send_keys(f"Titulo {banana} {name}")
+    type_ = random.randint(1, 3)
     
+    title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="title"]')))
+    
+    if type_ == 1:
+        # Input title
+        title.send_keys(f"Evento {count_ev}")
+        
+        count_ev += 1  
+    elif type_ == 2:
+        # Input title
+        title.send_keys(f"Notícia {count_no}")
+        
+        count_no += 1  
+    elif type_ == 3:
+        # Input title
+        title.send_keys(f"Vídeo {count_vi}")
+        
+        count_vi += 1  
+
     # Open the category dropdown
-    categ_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[4]/div')
-                                                  )
-                       ).click()
+    categ_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[4]/div'))
+                                ).click()
     
     # Random category
-    categ_type = random.randint(1,8)
+    categ_type = random.randint(1, 8)
     
     # Select the random category                                                           
-    categ_select = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[3]/form/div[4]/div[2]/div[{categ_type}]')
-                                                )
-                    ).click()
+    categ_select = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[3]/form/div[4]/div[2]/div[{categ_type}]'))
+                              ).click()
 
     # Close category dropdown
-    categ_close_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[4]/div[1]')
-                                                  )
-                       ).click()
+    categ_close_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[4]/div[1]'))
+                                      ).click()
     
     # Opens the type dropdown
-    type_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[6]/div/div')
-                                                )
-                    ).click()
-    
-    # Random type
-    type_input = random.randint(1,3)
+    type_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[6]/div/div'))
+                               ).click()
   
     # Select the random type
-    type_select = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[3]/form/div[6]/div/div[2]/div[{type_input}]')
-                                                )
-                    ).click()
+    type_select = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[3]/form/div[6]/div/div[2]/div[{type_}]'))
+                             ).click()
 
     # Input link
-    link = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="link"]')
-                                                  )
-                       ).send_keys("https://motorfind-master.netlify.app/scenarios")
+    link = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="link"]'))
+                      ).send_keys("https://www.youtube.com/watch?v=R_TbF5m5KpU&list=PLtfOHS1jNn0WliEKuQcm4qbtMgMExezEd&index=60")
 
     # Input description
-    description = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="description"]')
-                                                  )
-                       ).send_keys(f"Descrição {banana}")
+    description = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="description"]'))
+    ).send_keys(f"Descrição χάος {banana}")
     
     # Register button
-    register = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[1]/div/button[2]')
-                                                )
-                    ).click()
+    register = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[1]/div/button[2]'))
+                          ).click()
     
-    # Confirms the scene creaion
-    done = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/div/button')
-                                                )
-                    ).click()
+    # Confirms the scene creation
+    done = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/div/button'))
+                      ).click()
     
-    """open_scene_choise = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_input}]/div[1]')
-                                                )
-                    ).click()
+    open_scene_choice = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_}]/div[1]'))
+                                   ).click()
     
     time.sleep(1)
     
-    switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM')
-                                                  )
+    switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM'))
+                        ).click()
+    
+    time.sleep(0.5)
+    
+    close = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.dbdqeU'))
                        ).click()
     
-    time.sleep(1)
+    time.sleep(0.5)
     
-    close_scene_choise = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_input}]/div[1]')
-                                                )
-                    ).click()"""
+    close2 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.kVnpAj'))
+                        ).click()
     
-    banana += 1
+    close_scene_choice = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_}]/div[1]'))
+                                    ).click()
+    
+    banana += 1 
+    
+    time.sleep(0.5)
     
 get_user_input("DONE")
 # Close the browser
