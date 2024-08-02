@@ -19,6 +19,7 @@ from Functions.Rand_CPF import gera_e_valida_cpf
 from Functions.Rand_CPNJ import gera_cnpj
 from Functions.Get_country import random_country_func
 from Functions.Create_name import create_random_name
+from Functions.Get_time import get_time
 
 def get_user_input(prompt):
     root = tk.CTk()
@@ -28,10 +29,7 @@ def get_user_input(prompt):
 
     return user_input
 
-def get_time():
-    date_time = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-    
-    return date_time
+
 
 screenshot_dir = r'Images\Screenshot'
 os.makedirs(screenshot_dir, exist_ok=True)
@@ -83,7 +81,7 @@ class TestAppium(unittest.TestCase):
                 # Inputs the name
                 name = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex. José Santos")'))
-                ).send_keys(create_random_name() +  f' Automatico {count} ' + get_time())
+                ).send_keys(create_random_name() +  f' Automatico (MOBILE) {count} ' + get_time())
             
                 # Inputs the email
                 email = WebDriverWait(self.driver, 10).until(
