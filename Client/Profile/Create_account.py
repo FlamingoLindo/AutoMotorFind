@@ -184,9 +184,11 @@ for _ in range(account_amount_int):
                                                     )
                         ).click()
     
+    print(f"Account {count} created")
+    
     count +=1
     
-    print(f"Account {count} created")
+    
     
 get_user_input("DONE")
 # Close the browser
