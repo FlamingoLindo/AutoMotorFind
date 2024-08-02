@@ -161,11 +161,11 @@ class TestAppium(unittest.TestCase):
                 country = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.XPATH, f'//android.widget.TextView[@text="{rand_country}"]'))
                 ).click()
-                
+            
                 # Inputs CEP (can't make a function that generates random CEPs)
                 cep = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("00000-000")'))
-                ).send_keys('67140704')
+                ).send_keys('01001-000')
 
                 # Generates random address number
                 rand_num = random.randint(1, 999)
