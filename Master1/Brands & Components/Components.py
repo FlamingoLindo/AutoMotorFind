@@ -8,8 +8,6 @@ from selenium.webdriver.common.by import By
 import time
 from dotenv import load_dotenv
 import os
-import random
-import pyautogui
 load_dotenv()
 
 def get_user_input(prompt):
@@ -89,29 +87,30 @@ brand_input_str = get_user_input("How many?")
 brand_input_int = int(brand_input_str)
 for _ in range(brand_input_int):    
     
-    #
+    # Click the add button
     add_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'.fsHaFl'))
                         ).click()
         
-    #
+    # Add tittle
     title = wait.until(EC.element_to_be_clickable((By.ID, 'title'))
                        ).send_keys(f"Component {count}")
 
-    #
+    # Click the register button
     register = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.dskIoT'))
                         ).click()
     
-    #
+    # Close modal
     sucess = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[5]/div/button'))
                         ).click()
     
-    #
+    # Activate the component
     activate = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM'))
                            ).click()
     
     count += 1
     
-    time.sleep(1)                         
+    time.sleep(1)  
+
 get_user_input("DONE")
 # Close the browser
 driver.quit()

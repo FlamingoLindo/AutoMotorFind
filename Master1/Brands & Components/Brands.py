@@ -99,103 +99,110 @@ brand_input_str = get_user_input("How many?")
 brand_input_int = int(brand_input_str)
 for _ in range(brand_input_int):    
     
-    #
+    # Click the add button
     add_btn = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{categ_type}]/div[2]/div[1]'))
                         ).click()
         
-    #
+    # Finds tittle element
     title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="title"]')))
 
     if categ_type == 1:
         # Input title
         title.send_keys(f"Car brand {count_car}")
         
-        #
+        # Send random car image
         car_images = wait.until(EC.presence_of_element_located((By.ID, 'image'))
                              ).send_keys(random.choice(car_image_paths))
         
-        #
+        # Add 1 to car count
         count_car += 1  
             
     elif categ_type == 2:
         # Input title
         title.send_keys(f"Bike brand {count_bikes}")
         
-        #
+        # Send random bike image
         bike_image = wait.until(EC.presence_of_element_located((By.ID, 'image'))
                              ).send_keys(random.choice(bike_image_paths))
         
+        # Add 1 to bike count
         count_bikes += 1  
             
     elif categ_type == 3:
         # Input title
         title.send_keys(f"Truck brand {count_trucks}")
         
-        #
+        # Send random truck image
         truck_image = wait.until(EC.presence_of_element_located((By.ID, 'image'))
                              ).send_keys(random.choice(truck_image_paths))
         
+        # Add 1 to truck count
         count_trucks += 1
     
     elif categ_type == 4:
         # Input title
         title.send_keys(f"Race brand {count_race}")
         
-        #
+        # Send random race image
         race_image = wait.until(EC.presence_of_element_located((By.ID, 'image'))
                              ).send_keys(random.choice(race_image_paths))
         
+        # Add 1 to race count
         count_race += 1 
         
     elif categ_type == 5:
         # Input title
         title.send_keys(f"Drag brand {count_drag}")
         
-        #
+        # Send random drag image
         drag_image = wait.until(EC.presence_of_element_located((By.ID, 'image'))
                              ).send_keys(random.choice(drag_image_paths))
         
+        # Add 1 to drag count
         count_drag += 1 
         
     elif categ_type == 6:
         # Input title
         title.send_keys(f"Parts brand {count_parts}")
         
-        #
+        # Send random part image
         part_image = wait.until(EC.presence_of_element_located((By.ID, 'image'))
                              ).send_keys(random.choice(part_image_paths))
         
+        # Add 1 to part count
         count_parts += 1 
         
     elif categ_type == 7:
         # Input title
         title.send_keys(f"Service brand {count_service}")
         
-        #
+        # Send random service image
         service_image = wait.until(EC.presence_of_element_located((By.ID, 'image'))
                              ).send_keys(random.choice(service_image_paths))
         
+        # Add 1 to service count
         count_service += 1 
         
     elif categ_type == 8:
         # Input title
         title.send_keys(f"Classic brand {count_classic}")
         
-        #
+        # Send random classic image
         classic_image = wait.until(EC.presence_of_element_located((By.ID, 'image'))
                              ).send_keys(random.choice(classic_image_paths))
         
+        # Add 1 to classic count
         count_classic += 1 
     
+    # Click save button
     save = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.kCJSfW'))
                            ).click()
     
+    # Close modal
     sucess = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.kVnpAj'))
                            ).click()
-                                                                        
-    """activate = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'.sc-8aaad134-32:nth-child({categ_type}) .sc-20b3b2fb-2'))
-                           ).click()"""
-                           
+
+    # Activate brand                                                                                                       
     activate = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'.esbzDM'))
                            ).click()
     

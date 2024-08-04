@@ -9,6 +9,7 @@ import time
 from dotenv import load_dotenv
 import os
 import random
+import sys
 load_dotenv()
 
 def get_user_input(prompt):
@@ -18,15 +19,6 @@ def get_user_input(prompt):
     user_input = simpledialog.askstring("Input", prompt)
 
     return user_input
-
-def gera_cpf():
-    cpf = [random.randint(0, 9) for _ in range(9)]
-    soma = sum(x * y for x, y in zip(cpf, range(10, 1, -1)))
-    cpf.append((soma * 10) % 11)
-    soma = sum(x * y for x, y in zip(cpf, range(11, 1, -1)))
-    cpf.append((soma * 10) % 11)
-    cpf_formatado = ''.join(map(str, cpf))
-    return cpf_formatado[:3] + '.' + cpf_formatado[3:6] + '.' + cpf_formatado[6:9] + '-' + cpf_formatado[9:]
 
 def gera_parcela():
     return str(random.randint(1, 999999999))
