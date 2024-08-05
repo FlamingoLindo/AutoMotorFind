@@ -29,10 +29,6 @@ driver.get(os.getenv('MASTER_URL'))
 
 wait = WebDriverWait(driver, 5)
 
-# Sets image path
-image_path = r'C:\Users\josef\Desktop\AfterLifeDeath\MotorFind\AutoMotorFind\Images\logo.svg'
-banana = 1
-
 # Input email
 email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="email"]')
                                                     )
