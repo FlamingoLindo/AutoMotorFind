@@ -51,6 +51,8 @@ class TestAppium(unittest.TestCase):
             
     def test_edit_account(self) -> None:
         try:
+            email = get_user_input("Email")
+            password = get_user_input("Password")
             # Wait untill the app has loaded
             WebDriverWait(self.driver, 20).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("com.horcrux.svg.PathView").instance(0)'))
@@ -59,12 +61,12 @@ class TestAppium(unittest.TestCase):
             # Inputs the email
             email = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("insira seu e-mail")'))
-            ).send_keys(os.getenv("CLIENT_LOGIN"))
+            ).send_keys(email)
 
             # Inputs the password
             password = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Insira sua senha")'))
-            ).send_keys(os.getenv("CLIENT_PASSWORD"))
+            ).send_keys(password)
             
             # Button click
             next_btn = WebDriverWait(self.driver, 10).until(
@@ -81,7 +83,7 @@ class TestAppium(unittest.TestCase):
             raise  
             
         try:
-            time.sleep(1.4)
+            time.sleep(1)
             
             # Open profile
             profile_btn = WebDriverWait(self.driver, 10).until(
@@ -116,7 +118,7 @@ class TestAppium(unittest.TestCase):
             ).click()
             
             # Close modal
-            done_btn = WebDriverWait(self.driver, 10).until(
+            modal = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
             ).click()
             

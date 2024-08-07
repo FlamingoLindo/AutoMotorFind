@@ -47,9 +47,9 @@ capabilities = dict(
 appium_server_url = 'http://localhost:4723'
 
 
-CARD_NUM = "5260925819223282"
-CARD_EXP = "052026"
-CARD_CVV = "925"
+CARD_NUM = "5450320190456745"
+CARD_EXP = "0526"
+CARD_CVV = "866"
 
 class TestAppium(unittest.TestCase):
     def setUp(self) -> None:
@@ -59,8 +59,11 @@ class TestAppium(unittest.TestCase):
         if self.driver:
             self.driver.quit()
             
-    def test_add_card(self) -> None:
+    def test_add_bank(self) -> None:
         try:
+            email = get_user_input("Email")
+            password = get_user_input("Password")
+            
             # Wait untill the app has loaded
             WebDriverWait(self.driver, 20).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("com.horcrux.svg.PathView").instance(0)'))
@@ -69,12 +72,12 @@ class TestAppium(unittest.TestCase):
             # Inputs the email
             email = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("insira seu e-mail")'))
-            ).send_keys(os.getenv("CLIENT_LOGIN"))
+            ).send_keys(email)
 
             # Inputs the password
             password = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Insira sua senha")'))
-            ).send_keys(os.getenv("CLIENT_PASSWORD"))
+            ).send_keys(password)
             
             # Button click
             next_btn = WebDriverWait(self.driver, 10).until(
@@ -88,7 +91,7 @@ class TestAppium(unittest.TestCase):
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the first step 🔴")
             print(e)
-            raise  
+            raise
             
         try:
             time.sleep(1.4)
@@ -98,7 +101,7 @@ class TestAppium(unittest.TestCase):
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]'))
             ).click()
             
-            # Open account information
+            # Open wallet information
             wallet = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(4)'))
             ).click()
@@ -113,43 +116,43 @@ class TestAppium(unittest.TestCase):
             raise  
             
         try:
-            # Click the add card button
+            # Click add card button
             add_card_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(0)'))
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Adicionar novo cartão")'))
             ).click()
             
             # Input card name
             card_name = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex. José A V Andrade")'))
-            ).send_keys("NOME CARTAO")
+            ).send_keys("Cardauto")
             
-            # input card number
+            # Input card num
             card_num = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("1234-5678-9012-3456")'))
             ).send_keys(CARD_NUM)
             
-            # Input card expiration date
+            # Input card exp date
             card_exp = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("00/00")'))
             ).send_keys(CARD_EXP)
             
-            # Input card cvv
-            cvv = WebDriverWait(self.driver, 10).until(
+            # Input card security code
+            card_cvv = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000")'))
             ).send_keys(CARD_CVV)
             
-            # Input random CPF
-            cpf = WebDriverWait(self.driver, 10).until(
+            # Input card CPF
+            card_cpf = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("23800247828")'))
             ).send_keys(gera_e_valida_cpf())
             
-            # Click the save button
-            save = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(1)'))
+            # Click save button
+            save_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Salvar")'))
             ).click()
             
-            # Closes creation modal
-            continue_modal = WebDriverWait(self.driver, 10).until(
+            # Click sucess modal
+            modal = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
             ).click()
             
@@ -157,6 +160,65 @@ class TestAppium(unittest.TestCase):
         except Exception as e:
             self.driver.get_screenshot_as_file(screenshot_path)
             print("There has been an error on the third step 🔴")
+            print(e)
+            raise
+        
+        try:
+            # Click add bank account button
+            add_bank_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Adicionar conta de recebimento")'))
+            ).click()
+            
+            # Input bank CPF
+            bank_cpf = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("23800247828")'))
+            ).send_keys(gera_e_valida_cpf())
+            
+            # Input bank num
+            bank_num = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("23800247828")'))
+            ).send_keys()
+            
+            # Input bank agency
+            bank_agency = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("23800247828")'))
+            ).send_keys()
+            
+            # Click bank type dropdown
+            bank_type_dropdown = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Selecione uma opção")'))
+            ).click()
+            
+            # Click bank type 
+            bank_type = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, ''))
+            ).click()
+            
+            # Click bank dropdown
+            bank_dropdown = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Itaú, ")'))
+            ).click()
+            
+            # Click bank  
+            bank_ = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, ''))
+            ).click()
+            
+            # Click save button
+            save_btn = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Salvar")'))
+            ).click()
+            
+            # Click sucess modal
+            modal = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
+            ).click()
+            
+            
+            print("Fourth step done 🟢")
+        except Exception as e:
+            self.driver.get_screenshot_as_file(screenshot_path)
+            print("There has been an error on the fourth step 🔴")
             print(e)
             raise  
 

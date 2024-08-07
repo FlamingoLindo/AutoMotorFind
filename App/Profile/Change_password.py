@@ -59,6 +59,8 @@ class TestAppium(unittest.TestCase):
             
     def test_cahnge_password(self) -> None:
         try:
+            email = get_user_input("Email")
+            password = get_user_input("Password")
             # Wait untill the app has loaded
             WebDriverWait(self.driver, 20).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("com.horcrux.svg.PathView").instance(0)'))
@@ -67,12 +69,12 @@ class TestAppium(unittest.TestCase):
             # Inputs the email
             email = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("insira seu e-mail")'))
-            ).send_keys(os.getenv("CLIENT_LOGIN"))
+            ).send_keys(email)
 
             # Inputs the password
             password = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Insira sua senha")'))
-            ).send_keys(os.getenv("CLIENT_PASSWORD"))
+            ).send_keys(password)
             
             # Button click
             next_btn = WebDriverWait(self.driver, 10).until(
@@ -88,7 +90,6 @@ class TestAppium(unittest.TestCase):
 
         try:
             time.sleep(1)
-
             # Open progile page
             profile_btn = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]'))
@@ -107,10 +108,10 @@ class TestAppium(unittest.TestCase):
             raise     
     
         try:
-            # Input currente password
+            # Input current password
             current_password = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex: @*#138AB75").instance(0)'))
-            ).send_keys('Aa12345678!')
+            ).send_keys('12345678')
             
             # Input new password
             new_password = WebDriverWait(self.driver, 10).until(
@@ -131,8 +132,8 @@ class TestAppium(unittest.TestCase):
             ).click()
 
             # Close modal
-            continue_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
+            modal = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Continuar")'))
             ).click()
 
             print("Third step done 🟢")

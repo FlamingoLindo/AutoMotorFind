@@ -55,6 +55,8 @@ class TestAppium(unittest.TestCase):
             
     def test_edit_account(self) -> None:
         try:
+            EMAIL = get_user_input("Email")
+            PASSWORD = get_user_input("Password")
             # Wait untill the app has loaded
             WebDriverWait(self.driver, 20).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("com.horcrux.svg.PathView").instance(0)'))
@@ -63,12 +65,12 @@ class TestAppium(unittest.TestCase):
             # Inputs the email
             email = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("insira seu e-mail")'))
-            ).send_keys(os.getenv("CLIENT_LOGIN"))
+            ).send_keys(EMAIL)
 
             # Inputs the password
             password = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Insira sua senha")'))
-            ).send_keys(os.getenv("CLIENT_PASSWORD"))
+            ).send_keys(PASSWORD)
             
             # Button click
             next_btn = WebDriverWait(self.driver, 10).until(
@@ -83,7 +85,7 @@ class TestAppium(unittest.TestCase):
             raise  
             
         try:
-            time.sleep(1.4)
+            time.sleep(1)
             
             # Open profile
             profile_btn = WebDriverWait(self.driver, 10).until(
@@ -114,7 +116,7 @@ class TestAppium(unittest.TestCase):
             rand_phone = random.randint(11111111111, 99999999999)
             # Input random phonenumber
             celphone = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]'))
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.EditText").instance(2)'))
             )
             celphone.clear()
             celphone.send_keys(rand_phone)
@@ -123,7 +125,7 @@ class TestAppium(unittest.TestCase):
             cnpj = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(20)'))
             )
-            cnpj.clear()
+            
             cnpj.send_keys(gera_cnpj())
             
             # Input random telephone

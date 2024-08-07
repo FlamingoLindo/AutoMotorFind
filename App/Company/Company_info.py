@@ -46,13 +46,6 @@ capabilities = dict(
 
 appium_server_url = 'http://localhost:4723'
 
-
-CARD_NUM = "5260925819223282"
-CARD_EXP = "052026"
-CARD_CVV = "925"
-
-
-
 class TestAppium(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
@@ -63,6 +56,8 @@ class TestAppium(unittest.TestCase):
 
     def test_edit_account(self) -> None:
         try:
+            EMAIL = get_user_input("Email")
+            PASSWORD = get_user_input("Password")
             # Wait untill the app has loaded
             WebDriverWait(self.driver, 20).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("com.horcrux.svg.PathView").instance(0)'))
@@ -71,12 +66,12 @@ class TestAppium(unittest.TestCase):
             # Inputs the email
             email = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("insira seu e-mail")'))
-            ).send_keys(os.getenv("CLIENT_LOGIN"))
+            ).send_keys(EMAIL)
 
             # Inputs the password
             password = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Insira sua senha")'))
-            ).send_keys(os.getenv("CLIENT_PASSWORD"))
+            ).send_keys(PASSWORD)
             
             # Button click
             next_btn = WebDriverWait(self.driver, 10).until(
@@ -92,9 +87,10 @@ class TestAppium(unittest.TestCase):
             print(e)
             
         try:
+            time.sleep(1)
             # 
             company_btn = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.widget.Button").instance(0)'))
+                EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[1]'))
             ).click()
             
             # 
