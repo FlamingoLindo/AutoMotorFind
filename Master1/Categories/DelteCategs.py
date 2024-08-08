@@ -76,13 +76,18 @@ open_categ = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/
                                                   )
                        ).click()
 
+time.sleep(1)
+
 # Finds trash can icons
-trash_icon = driver.find_elements(By.CSS_SELECTOR, '.gxZQmG')
+trash_icon = driver.find_elements(By.CSS_SELECTOR, '.eFlsBq')
+print(len(trash_icon))
+
+count = 2
 
 for _ in range(len(trash_icon)):
     
     # Click the trash icon
-    click_trash = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[2]/div[8]/div[2]/div[2]/div[2]/img[2]')
+    click_trash = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[1]/div[2]/div[6]/div[2]/img[2]')
                                                     )
                         ).click()
     
@@ -90,12 +95,14 @@ for _ in range(len(trash_icon)):
     delete = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[3]/div/div/button[1]')
                                                     )
                         ).click()
-    
+    time.sleep(1)
     # Confirm the deletion
     done = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[3]/div/button')
                                                     )
                         ).click()
     time.sleep(1)
+    
+    count += 1
     
 get_user_input("DONE")
 # Close the browser

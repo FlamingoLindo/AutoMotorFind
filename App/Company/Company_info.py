@@ -120,7 +120,7 @@ class TestAppium(unittest.TestCase):
            
            #
             albuns = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Álbuns'))
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Álbuns")'))
                 )
             albuns.click()
             
@@ -144,19 +144,26 @@ class TestAppium(unittest.TestCase):
             
             # 
             logo = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("com.horcrux.svg.GroupView").instance(3)'))
-            )
+                EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(20)'))
+            ).click()
             albuns.click()
             favorites.click()
-            image.click()
-            done.click()
+            
+            #
+            image2 = WebDriverWait(self.driver, 10).until(
+                        EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().resourceId("com.google.android.providers.media.module:id/icon_thumbnail").instance(1)'))
+                    )
+            image2.click()
+            
+            #
+            done2 = WebDriverWait(self.driver, 10).until(
+                        EC.presence_of_element_located((AppiumBy.ID, 'com.mestresdaweb.motorfind:id/crop_image_menu_crop'))
+                    ).click()
             
             # 
             description = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(19)'))
-            )
-            description.clear()
-            description.send_keys("Description")
+            ).send_keys("Description")
             
             #
             self.driver.swipe(start_x=500, start_y=100, end_x=500, end_y=1900, duration=80)

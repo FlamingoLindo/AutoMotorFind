@@ -76,7 +76,7 @@ catgs_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/as
 time.sleep(0.5)
 
 # Randonmly choose the category type
-categ_type = random.randint(1, 8)
+categ_type = 1#random.randint(1, 8)
 
 category_map = {
     1: "Carros",
