@@ -47,9 +47,9 @@ capabilities = dict(
 appium_server_url = 'http://localhost:4723'
 
 
-CARD_NUM = "5406817798046799"
-CARD_EXP = "0625"
-CARD_CVV = "526"
+CARD_NUM = "5512475633350883"
+CARD_EXP = "0426"
+CARD_CVV = "274"
 
 class TestAppium(unittest.TestCase):
     def setUp(self) -> None:
