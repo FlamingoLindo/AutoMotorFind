@@ -273,12 +273,12 @@ class TestAppium(unittest.TestCase):
             try: 
                 # Agree of terms and conditions
                 agree = WebDriverWait(self.driver, 5).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup'))
+                    EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@text="Li e Concordo com os termos de uso e política de privacidade"]'))
                 ).click()
 
                 # Click the accept button
                 accept_btn = WebDriverWait(self.driver, 5).until(
-                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View")'))
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(2)'))
                 ).click()
                 
                 time.sleep(1.5)
