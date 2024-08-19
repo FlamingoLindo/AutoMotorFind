@@ -77,10 +77,10 @@ for _ in range(account_amount_int):
                                                     )
                         ).send_keys(gera_e_valida_cpf())
     
-    # Inputs random CPNJ
+    """# Inputs random CPNJ
     cnpj_input = wait.until(EC.element_to_be_clickable((By.ID, 'cnpj')
                                                     )
-                        ).send_keys(gera_cnpj())
+                        ).send_keys(gera_cnpj())"""
     
     # Generate random phone number (1)
     rand_telephone = random.randint(11111111111, 99999999999)
@@ -159,14 +159,14 @@ for _ in range(account_amount_int):
     next_btn5 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hFGBKx')
                                                     )
                         ).click()
-    
+
     # Agree to the terms and conditions
-    terms = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.leEbPC')
+    terms = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.jncpFj')
                                                     )
                         ).click()
     
     # Click the continue button
-    continue_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.jjwRFZ')
+    continue_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.FegBo')
                                                     )
                         ).click()
     
