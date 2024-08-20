@@ -2,7 +2,7 @@ import os
 
 def get_image_paths(directory, extensions=None):
     if extensions is None:
-        extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp']
+        extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff']
 
     image_paths = []
 
@@ -15,7 +15,7 @@ def get_image_paths(directory, extensions=None):
     return image_paths
 
 # Example usage:
-directory_path = r'Images\Classic_Brands'
+directory_path = r'Images\Veiculos\Bike'
 images = get_image_paths(directory_path)
 
 # Join all paths into a single string separated by spaces

@@ -15,9 +15,9 @@ load_dotenv()
 ACC_NUM = "04537173"
 AGENCY = "3264"
 
-CARD_NUM = '5213736895018720'
-EXPI_DATE = '0226'
-CVV = '583'
+CARD_NUM = '5289265985168111'
+EXPI_DATE = '0925'
+CVV = '266'
 
 
 # Add the path to the directory containing the Functions module

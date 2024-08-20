@@ -159,7 +159,7 @@ for _ in range(account_amount_int):
     next_btn5 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hFGBKx')
                                                     )
                         ).click()
-
+    
     # Agree to the terms and conditions
     terms = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.jncpFj')
                                                     )
@@ -189,7 +189,7 @@ for _ in range(account_amount_int):
     print(f"Account {count} created")
     
     count +=1
-    
+
 get_user_input("DONE")
 # Close the browser
 driver.quit()
