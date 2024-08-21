@@ -108,9 +108,8 @@ class TestAppium(unittest.TestCase):
             
         try:
             # Ask how many products are going to be made
-            product_amount_str = get_user_input("How many?")
-            product_amount_int = int(product_amount_str)
-            for _ in range(product_amount_int):
+            product_amount = int(get_user_input("How many?"))
+            for _ in range(product_amount):
                 # Click the add product button
                 add_product = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(0)'))
@@ -127,7 +126,7 @@ class TestAppium(unittest.TestCase):
                 ).send_keys(count)
                 
                 # Generates random value
-                rand_value = random.randint(5, 99999999)
+                rand_value = random.randint(5, 999)
                 # Input product random value
                 product_value = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.EditText[@text="R$ 00,00"]'))
@@ -138,91 +137,31 @@ class TestAppium(unittest.TestCase):
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Escolha a categoria")'))
                 )
                 category.click()
-                
-                categ_type = random.randint(1, 8)
-                category_map = {
-                    1: "Carros",
-                    2: "Motos",
-                    3: "Trucks",
-                    4: "Race",
-                    5: "Drag",
-                    6: "Peças",
-                    7: "Clássicos"
-                }
-
-                type = category_map.get(categ_type)
-
+        
                 # Select category item
                 category_type = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, f'//android.widget.TextView[@text="{type}"]'))
+                    EC.presence_of_element_located((AppiumBy.XPATH, f'//android.widget.TextView[@text="Bikes"]'))
                 ).click()
+                
+                # Swipes to the bottom of the page
+                self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
                 
                 # Open subcategory dropdown
                 sub_category = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Escolha a subcategoria")'))
                 ).click()
-
-                sub_categ_type = random.randint(1, 5)
-                sub_category_map = {
-                    1: {
-                        1: "Especiais",
-                        2: "Premium",
-                        3: "Esportivos",
-                        4: "Premium2",
-                        5: "Peças de Carros"
-                    },
-                    2: {
-                        1: "Superbike",
-                        2: "Peças de motos",
-                        3: "Subcategoria 1 Motos",
-                        4: "Subcategoria 2 Motos",
-                        5: "Subcategoria 3 Motos"
-                    },
-                    3: {
-                        1: "Eurotruck",
-                        2: "Peças de Trucks",
-                        3: "Subcategoria 1 Trucks",
-                        4: "Subcategoria 2 Trucks",
-                        5: "Subcategoria 3 Trucks"
-                    },
-                    4: {
-                        1: "Carros de Alta Performance",
-                        2: "Peças de Race",
-                        3: "Subcategoria 1 Race",
-                        4: "Subcategoria 2 Race",
-                        5: "Subcategoria 3 Race"
-                    },
-                    5: {
-                        1: "drag",
-                        2: "Peças de Drag",
-                        3: "Subcategoria 1 Drag",
-                        4: "Subcategoria 2 Drag",
-                        5: "Subcategoria 3 Drag"
-                    },
-                    6: {
-                        1: "Peças de Carro",
-                        2: "Peças de Motos",
-                        3: "Peças de Trucks",
-                        4: "Peças de Race",
-                        5: "Peças de Drag"
-                    },
-                    7: {
-                        1: "Peças de Clássicos",
-                        2: "Subcategoria 1 Clássicos",
-                        3: "Subcategoria 2 Clássicos",
-                        4: "Subcategoria 3 Clássicos",
-                        5: "Subcategoria 4 Clássicos"
-                    }
-                }
-                sub_type = sub_category_map[categ_type].get(sub_categ_type)
-                print(sub_type)
+                    
                 # Select subcategory item
                 sub_category_item = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.XPATH, f'//android.widget.TextView[@text="{sub_type}"]'))
+                    EC.presence_of_element_located((AppiumBy.XPATH, f'//android.widget.TextView[@text="ALTERAR"]'))
                 ).click()
                 
-                # Swipes to the bottom of the page
-                self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
+                # Click the "Product is" dropdown
+                prod_condition_dropdown = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.ViewGroup").instance(20)'))
+                ).click()
+                
+                # Select product condition
                 
                 # Click the 'add photo' button
                 add_photo_btn = WebDriverWait(self.driver, 10).until(
@@ -247,11 +186,29 @@ class TestAppium(unittest.TestCase):
                         )
                 image.click()
 
-                """# Open negotiation dropdown
-                negotiaton = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a subcategoria, '))
-                ).click()"""
-
+                # Open negotiation dropdown
+                negotiaton_dropdown = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Sim, '))
+                ).click()
+                
+                # Negotiation select
+                
+                # Shift type dropdown
+                shift_type_dropdown = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha o tipo de câmbio, '))
+                ).click()
+                
+                # Select shift type
+                
+                # Click highlight dropdown
+                highlight_dropdown = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Não, '))
+                ).click()
+                
+                # Select highlight option
+                
+                
+                
                 # Swipes to the top of the page
                 self.driver.swipe(start_x=500, start_y=700, end_x=500, end_y=1600, duration=80)
 
@@ -260,10 +217,12 @@ class TestAppium(unittest.TestCase):
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Detalhes'))
                 ).click()
 
-                """# Open the brand dropdown
+                # Open the brand dropdown
                 brand = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a marca do produto, '))
-                ).click()"""
+                ).click()
+                
+                # Select brand option
                 
                 # Generates random kilometers
                 rand_km = random.randint(0, 9999)
@@ -279,13 +238,15 @@ class TestAppium(unittest.TestCase):
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("0000")'))
                 ).send_keys(rand_km)
 
-                # Input year
-                color = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Ex. Preto")'))
-                ).send_keys(f"Auto color {count}")
+                # Click color dropdown
+                color_dropdown = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID, 'Escolha a cor do produto, '))
+                ).click()
+                
+                # Select color
 
                 # Generate random speed
-                rand_speed = random.randint(200, 300)
+                rand_speed = random.randint(100, 300)
                 # Inputs random speed
                 speed = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 km/h")'))
@@ -298,15 +259,15 @@ class TestAppium(unittest.TestCase):
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 Nm")'))
                 ).send_keys(rand_torque)
                 
+                # Swipes to the bottom of the page
+                self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
+                
                 # Generate random power
                 rand_power = random.randint(1, 9999)
                 # Input random power
                 power = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("000 PS")'))
                 ).send_keys(rand_torque)
-
-                # Swipes to the bottom of the page
-                self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
 
                 # Input link :Tomfoolery:
                 link = WebDriverWait(self.driver, 10).until(
