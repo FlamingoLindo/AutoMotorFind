@@ -121,7 +121,7 @@ try:
                                 ).click()
         
         # Click category option 1 ("Carros")
-        race_category = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-3-option-4']")
+        race_category = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-3-option-5']")
                                                             )
                                 ).click()
         
@@ -141,7 +141,8 @@ try:
                                 ).click()
         
         # 
-        is_option = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-5-option-0']")
+        random_is = random.randint(0,1)
+        is_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@id='react-select-5-option-{random_is}']")
                                                             )
                                 ).click()
         
@@ -151,12 +152,34 @@ try:
                                 ).click()
         
         # 
-        negociation_option = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-6-option-0']")
+        random_negociation = random.randint(0,1)
+        negociation_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@id='react-select-6-option-{random_negociation}']")
+                                                            )
+                                ).click()
+        
+        #
+        shift_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[3]/form/div[2]/div[1]/div[9]/div/div')
                                                             )
                                 ).click()
         
         # 
-        address_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[3]/form/div[2]/div[1]/div[9]/div/div')
+        rand_shift = random.randint(0,1)
+        shift_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//*[@id='react-select-8-option-{rand_shift}']")
+                                                            )
+                                ).click()
+        
+        #
+        highlight_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[3]/form/div[2]/div[1]/div[10]/div/div')
+                                                            )
+                                ).click()
+        
+        # 
+        highlight_option = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='react-select-9-option-0']")
+                                                            )
+                                ).click()
+        
+        # 
+        address_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[3]/form/div[2]/div[1]/div[11]/div/div')
                                                             )
                                 ).click()
         
@@ -185,6 +208,8 @@ try:
             
             pyautogui.press('enter')
             
+            time.sleep(0.8)
+            
         # 
         details_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[3]/form/div[1]/button[2]")
                                                             )
@@ -196,7 +221,8 @@ try:
                                 ).click()
         
         # 
-        brand_option = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-8-option-0']")
+        rand_brand = random.randint(0,10)
+        brand_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@id='react-select-10-option-{rand_brand}']")
                                                             )
                                 ).click()
         
@@ -219,7 +245,7 @@ try:
         
         # 
         rand_color = random.randint(0,4)
-        brand_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@id='react-select-9-option-{rand_color}']")
+        brand_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@id='react-select-11-option-{rand_color}']")
                                                             )
                                 ).click()
         
@@ -256,7 +282,7 @@ try:
                                                             )
                                 ).click()
         
-        time.sleep(5)
+        time.sleep(3)
         
         pyautogui.press('f5')
         
@@ -265,10 +291,7 @@ except Exception as e:
     print('There has been an error opening products creation page')
     print(e)
 
-    
 
-    
-    
 get_user_input("DONE")
 # Close the browser
 driver.quit()
