@@ -14,10 +14,7 @@ import sys
 from dotenv import load_dotenv
 load_dotenv()
 
-# Add the path to the directory containing the Functions module
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from Functions.Rand_CPF import gera_e_valida_cpf
 
 def get_user_input(prompt):
     root = tk.CTk()

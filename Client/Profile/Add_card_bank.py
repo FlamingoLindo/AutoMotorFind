@@ -12,12 +12,12 @@ import random
 import sys
 load_dotenv()
 
-ACC_NUM = "04537173"
-AGENCY = "3264"
+ACC_NUM = "485955686"
+AGENCY = "4527"
 
-CARD_NUM = '5289265985168111'
-EXPI_DATE = '0925'
-CVV = '266'
+CARD_NUM = '5252693013790205'
+EXPI_DATE = '0725'
+CVV = '409'
 
 
 # Add the path to the directory containing the Functions module
@@ -98,7 +98,7 @@ except Exception as e:
     print('There has been an error opening the profile options')
     print(e)
     
-"""
+
 try:
     # Click add bank account
     add_bank_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[1]/button')
@@ -158,7 +158,7 @@ try:
 except Exception as e:
     print('There has been an error while creating the bank account')
     print(e)
-"""
+
 try:
     # Ask for the amount of cards to be created
     card_amount_str = get_user_input('Card amount?')

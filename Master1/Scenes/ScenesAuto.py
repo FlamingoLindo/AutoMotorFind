@@ -76,7 +76,7 @@ for _ in range(scnes_amount_int):
     time.sleep(1.3)
 
     # Random type
-    type_ = random.randint(1, 3)
+    type_ = 3#random.randint(1, 3)
     
     title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="title"]')))
     
@@ -119,9 +119,14 @@ for _ in range(scnes_amount_int):
     type_select = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[3]/form/div[6]/div/div[2]/div[{type_}]'))
                              ).click()
 
+    videos = ['https://www.youtube.com/watch?v=XpvladeVFq4','https://www.youtube.com/watch?v=mcaLnV15_8U&t=127s','https://www.youtube.com/watch?v=O0cs8aIXgkc',
+              'https://www.youtube.com/watch?v=14r73tVLD5A', 'https://www.youtube.com/watch?v=pQaG0ay957M']
+    
+    i = random.randint(0,4)
+    
     # Input link
     link = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="link"]'))
-                      ).send_keys("https://www.youtube.com/watch?v=R_TbF5m5KpU&list=PLtfOHS1jNn0WliEKuQcm4qbtMgMExezEd&index=60")
+                      ).send_keys(videos[i])
 
     # Input description
     description = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="description"]'))
@@ -140,7 +145,7 @@ for _ in range(scnes_amount_int):
     
     time.sleep(1)
     
-    switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM'))
+    """switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM'))
                         ).click()
     
     time.sleep(0.5)
@@ -154,7 +159,7 @@ for _ in range(scnes_amount_int):
                         ).click()
     
     close_scene_choice = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_}]/div[1]'))
-                                    ).click()
+                                    ).click()"""
     
     banana += 1 
     

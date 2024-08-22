@@ -121,7 +121,7 @@ try:
                                 ).click()
         
         # Click category option 1 ("Carros")
-        classic_category = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-4-option-0']")
+        classic_category = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-3-option-4']")
                                                             )
                                 ).click()
         
