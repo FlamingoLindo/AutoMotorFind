@@ -101,7 +101,7 @@ try:
         # Product name
         name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                             )
-                                ).send_keys(f'Auto Part {count}')
+                                ).send_keys(f'Auto Part Eduardo {count}')
         
         # Product quantity
         rand_qnt = random.randint(100,999)

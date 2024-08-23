@@ -46,7 +46,7 @@ try:
     # Input login
     login_input = wait.until(EC.element_to_be_clickable((By.ID, 'email')
                                                         )
-                            ).send_keys('mingau@gmail.com')
+                            ).send_keys('caos@gmail.com')
 
     # Input password
     password_input = wait.until(EC.element_to_be_clickable((By.ID, 'password')
@@ -93,6 +93,8 @@ try:
                                                             )
                                 ).click()
         
+        time.sleep(1)
+        
         # Click type option 1
         type_vehicle = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@id='react-select-2-option-0']")
                                                             )
@@ -101,7 +103,7 @@ try:
         # Product name
         name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                             )
-                                ).send_keys(f'Auto Truck {count}')
+                                ).send_keys(f'Auto Truck Roberto {count}')
         
         # Product quantity
         rand_qnt = random.randint(100,999)
@@ -174,7 +176,8 @@ try:
                                 ).click()
         
         # 
-        highlight_option = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='react-select-9-option-0']")
+        a = random.randint(0,1)
+        highlight_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//*[@id='react-select-9-option-{a}']")
                                                             )
                                 ).click()
         
@@ -221,7 +224,7 @@ try:
                                 ).click()
         
         # 
-        rand_brand = random.randint(0,10)
+        rand_brand = random.randint(0,3)
         brand_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@id='react-select-10-option-{rand_brand}']")
                                                             )
                                 ).click()
@@ -275,14 +278,14 @@ try:
         #
         desc = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="description"]')
                                                             )
-                                ).send_keys(f'AUTOMATIC DESCRIPTION {count}')
+                                ).send_keys(f'AUTOMATIC DESCRIPTION Eduardo {count}')
         
         #
         add_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[3]/form/div[3]/button[1]")
                                                             )
                                 ).click()
         
-        time.sleep(3)
+        time.sleep(3.5)
         
         pyautogui.press('f5')
         

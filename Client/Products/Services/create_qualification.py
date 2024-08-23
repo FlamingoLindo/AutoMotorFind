@@ -90,7 +90,7 @@ try:
         #
         name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                             )
-                                ).send_keys(f'Auto Qualification {count}')
+                                ).send_keys(f'Auto Qualification Eduardo {count}')
         
         #
         rand_duration = random.randint(1,99)
@@ -115,7 +115,7 @@ try:
                                 ).click()
         
         # 
-        quali_sub_option = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-select-3-option-0"]')
+        quali_sub_option = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-select-3-option-1"]')
                                                             )
                                 ).click()
         

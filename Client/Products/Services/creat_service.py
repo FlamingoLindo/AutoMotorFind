@@ -115,7 +115,7 @@ try:
                                 ).click()
         
         # 
-        service_sub_option = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-select-3-option-1"]')
+        service_sub_option = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="react-select-3-option-0"]')
                                                             )
                                 ).click()
         
