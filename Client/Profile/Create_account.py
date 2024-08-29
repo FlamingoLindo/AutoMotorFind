@@ -1,5 +1,5 @@
 import customtkinter as tk
-from tkinter import simpledialog
+from tkinter import simpledialog, messagebox
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
@@ -22,12 +22,20 @@ from App.Functions.Get_time import get_time
 
 def get_user_input(prompt):
     root = tk.CTk()
-    root.withdraw()  # Hide the main window
-
     user_input = simpledialog.askstring("Input", prompt)
 
     return user_input
 
+"""def ask_yes_no():
+    global cnpj  
+    root = tk.CTk()
+    result = messagebox.askyesno("CNPJ", "Criar usuários com CNPJ?")
+    print(result)
+    if result:
+        cnpj = True
+    else:
+        cnpj = False"""
+    
 # Drive stuff
 driver_path = './chromedriver.exe'
 s = Service(driver_path)
@@ -36,7 +44,6 @@ driver = webdriver.Chrome(service=s)
 driver.get(os.getenv('CLIENT_URL'))
 
 wait = WebDriverWait(driver, 5)
-
 
 count = 1
 
@@ -68,7 +75,7 @@ for _ in range(account_amount_int):
                         ).send_keys(rand_phone)
     
     # Click next button 1
-    next_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.dCoGxG')
+    next_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')
                                                     )
                         ).click()
     
@@ -77,35 +84,36 @@ for _ in range(account_amount_int):
                                                     )
                         ).send_keys(gera_e_valida_cpf())
     
+    
     """# Inputs random CPNJ
     cnpj_input = wait.until(EC.element_to_be_clickable((By.ID, 'cnpj')
                                                     )
-                        ).send_keys(gera_cnpj())"""
-    
+                        ).send_keys(gera_cnpj())
+        
     # Generate random phone number (1)
     rand_telephone = random.randint(11111111111, 99999999999)
     # Inputs random telephone number
     telephone_input = wait.until(EC.element_to_be_clickable((By.ID, 'telephone')
                                                     )
-                        ).send_keys(rand_telephone)
-
+                        ).send_keys(rand_telephone)"""
+    
     # Click next button 2
-    next_btn2 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hvAiZb')
+    next_btn2 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')
                                                     )
                         ).click()
     
     # Click the country dropdown
-    country_dorpdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.jSZTir')
+    country_dorpdown = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/div[3]/div/div')
                                                     )
                         ).click()
     
     # Serach Brazil
-    country_search = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eSxcE')
+    country_search = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.bnPiDF')
                                                     )
                         ).send_keys("Brasil")
     
     # Select Brazil
-    country_select = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.gNYYxY')
+    country_select = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.ePUNPs')
                                                     )
                         ).click()
     
@@ -122,7 +130,7 @@ for _ in range(account_amount_int):
     time.sleep(1.5)
     
     # Click next button 3
-    next_btn3 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hNJTTa')
+    next_btn3 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')
                                                     )
                         ).click()
     
@@ -137,7 +145,7 @@ for _ in range(account_amount_int):
                         ).send_keys("Aa12345678!")
     
     # Click next button 4
-    next_btn4 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.jLEUkB')
+    next_btn4 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')
                                                     )
                         ).click()
     
@@ -156,7 +164,7 @@ for _ in range(account_amount_int):
 
         
     # Click next button 5
-    next_btn5 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hFGBKx')
+    next_btn5 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')
                                                     )
                         ).click()
     
@@ -179,9 +187,11 @@ for _ in range(account_amount_int):
     account_dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.bNVGjx')
                                                     )
                         ).click()
+        
+    time.sleep(0.5)
     
     # Exit account
-    exit = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/span[8]')
+    exit = wait.until(EC.presence_of_element_located((By.XPATH, '//html/body/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/span[8]')
                                                     )
                         ).click()
     
@@ -190,6 +200,9 @@ for _ in range(account_amount_int):
     
     count +=1
 
-get_user_input("DONE")
+    time.sleep(1)
+
 # Close the browser
 driver.quit()
+
+os.system('start chrome https://motorfind-master.netlify.app/users')

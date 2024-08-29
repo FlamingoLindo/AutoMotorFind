@@ -32,7 +32,7 @@ wait = WebDriverWait(driver, 5)
 image_paths_string  = os.getenv('IMAGE_PATHS')
 image_paths = image_paths_string.split(',')
 
-banana = 1
+count = 1
 
 # Input email
 email_input = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="email"]')
@@ -52,19 +52,18 @@ login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/fo
 time.sleep(1)
 
 # Opens the scnes page
-scnes_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[7]')
+scnes_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[5]')
                                                   )
                        ).click()
 
 # Ask how mant scenes are going to be created
-scnes_amount_str = get_user_input("How many scenes?")
-scnes_amount_int = int(scnes_amount_str)
+scnes_amount = int(get_user_input("How many scenes?"))
 
 count_ev = 1
 count_no = 1
 count_vi = 1
 
-for _ in range(scnes_amount_int):
+for _ in range(scnes_amount):
     
     # Opens the register scene button
     register_scene = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[1]/div/div/button'))
@@ -76,24 +75,26 @@ for _ in range(scnes_amount_int):
     time.sleep(1.3)
 
     # Random type
-    type_ = 3#random.randint(1, 3)
+    type_ = random.randint(1, 3)
     
     title = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="title"]')))
+    
+    description = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="description"]')))
     
     if type_ == 1:
         # Input title
         title.send_keys(f"Evento {count_ev}")
-        
+        description.send_keys(f'Descrição evento {count_ev}')
         count_ev += 1  
     elif type_ == 2:
         # Input title
         title.send_keys(f"Notícia {count_no}")
-        
+        description.send_keys(f'Descrição notícia {count_no}')
         count_no += 1  
     elif type_ == 3:
         # Input title
         title.send_keys(f"Vídeo {count_vi}")
-        
+        description.send_keys(f'Descrição vídeo {count_vi}')
         count_vi += 1  
 
     # Open the category dropdown
@@ -128,9 +129,7 @@ for _ in range(scnes_amount_int):
     link = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="link"]'))
                       ).send_keys(videos[i])
 
-    # Input description
-    description = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="description"]'))
-    ).send_keys(f"Descrição χάος {banana}")
+    
     
     # Register button
     register = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/form/div[1]/div/button[2]'))
@@ -140,12 +139,12 @@ for _ in range(scnes_amount_int):
     done = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[3]/div/button'))
                       ).click()
     
-    open_scene_choice = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_}]/div[1]'))
+    """open_scene_choice = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_}]/div[1]'))
                                    ).click()
     
     time.sleep(1)
     
-    """switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM'))
+    switch = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.esbzDM'))
                         ).click()
     
     time.sleep(0.5)
@@ -161,7 +160,7 @@ for _ in range(scnes_amount_int):
     close_scene_choice = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{type_}]/div[1]'))
                                     ).click()"""
     
-    banana += 1 
+    count += 1 
     
     time.sleep(0.5)
     

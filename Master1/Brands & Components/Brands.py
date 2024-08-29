@@ -72,7 +72,7 @@ login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/fo
 time.sleep(1)
 
 # Open brands page 
-brands_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[9]')
+brands_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[7]')
                                                   )
                        ).click()
 
@@ -85,8 +85,10 @@ count_parts = 1
 count_service = 1
 count_classic = 1
 
+categ_type = int(get_user_input('Escolha a categoria: [1]Carros, [2]Motos, [3]Trucks, [4]Race, [5]Drag, [6]Peças, [7]Serviços, [8]Clássicos'))
+
 # Randonmly choose the category type
-categ_type = 8#random.randint(1,8)
+#categ_type = 1#random.randint(1,8)
         
 #
 cate_menu = wait.until(EC.element_to_be_clickable((By.XPATH, f'/html/body/main/div/div/div[2]/div[{categ_type}]/div[1]'))
@@ -201,10 +203,10 @@ for _ in range(brand_input_int):
     # Close modal
     sucess = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.kVnpAj'))
                            ).click()
-
-    # Activate brand                                                                                                       
+    
+    """# Activate brand                                                                                                       
     activate = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, f'.esbzDM'))
-                           ).click()
+                           ).click()"""
     
     time.sleep(1)
                                    

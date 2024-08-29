@@ -39,7 +39,7 @@ except Exception as e:
 
 try:
     # Click the login button
-    login_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hygPet')
+    login_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eAOppz')
                                                         )
                             ).click() 
 
@@ -54,7 +54,7 @@ try:
                             ).send_keys('12345678')
 
     # Logs in 
-    do_login = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eaqkjo')
+    do_login = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.fAJeQq')
                                                         )
                             ).click() 
 except Exception as e:
@@ -64,15 +64,12 @@ except Exception as e:
 try:
     count = 1
     
-    # Click options
-    options = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.bNVGjx')
+    time.sleep(2)
+    
+    # Click sales
+    sales = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eAOppz')
                                                         )
                             ).click() 
-
-    # Click my profile option
-    my_sales_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/span[2]')
-                                                        )
-                            ).click()
     
     amount_str = get_user_input("How many?")
     amount_int = int(amount_str)
@@ -103,7 +100,7 @@ try:
         # Product name
         name = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="name"]')
                                                             )
-                                ).send_keys(f'Auto Bike Roberto {count}')
+                                ).send_keys(f'Auto Bike {count}')
         
         # Product quantity
         rand_qnt = random.randint(100,999)
@@ -123,7 +120,7 @@ try:
                                 ).click()
         
         # Click category option 1 ("Carros")
-        bike_category = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-3-option-2']")
+        bike_category = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-3-option-1']")
                                                             )
                                 ).click()
         
@@ -166,7 +163,7 @@ try:
         
         # 
         rand_shift = random.randint(0,1)
-        shift_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//*[@id='react-select-8-option-{rand_shift}']")
+        shift_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//*[@id='react-select-9-option-{rand_shift}']")
                                                             )
                                 ).click()
         
@@ -177,7 +174,7 @@ try:
         
         # 
         a = random.randint(0,1)
-        highlight_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//*[@id='react-select-9-option-{a}']")
+        highlight_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//*[@id='react-select-7-option-{a}']")
                                                             )
                                 ).click()
         
@@ -187,7 +184,7 @@ try:
                                 ).click()
         
         # 
-        adress_option = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-7-option-0']")
+        adress_option = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='react-select-8-option-0']")
                                                             )
                                 ).click()
         
@@ -288,6 +285,8 @@ try:
         time.sleep(3)
         
         pyautogui.press('f5')
+        
+        time.sleep(2)
         
         count += 1
 except Exception as e:

@@ -46,20 +46,21 @@ login_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/fo
 time.sleep(1)
 
 # Opesn the plans page
-plans_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[5]')
+plans_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/aside/nav/a[3]')
                                                   )
                        ).click()
 
+categ_type = int(get_user_input('Escolha a categoria: [1]Carros, [2]Motos, [3]Trucks, [4]Race, [5]Drag, [6]Peças, [7]Serviços, [8]Clássicos'))
+
 # Ask how many plans are going to be created
-plan_amount_str = get_user_input("How many?")
-plan_amount_int = int(plan_amount_str)
+plan_amount = int(get_user_input("How many?"))
+
 count = 1
-for _ in range(plan_amount_int):
+
+for _ in range(plan_amount):
     
     # Opens the plan creation modal
-    add_plan = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[1]/div/button')
-                                                    )
-                        ).click()
+    add_plan = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[1]/div/button'))).click()
     
     # Click at the category dropdown
     categ_drop_down = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div/div[4]/form/div[3]/div[1]/div')
@@ -67,11 +68,11 @@ for _ in range(plan_amount_int):
                         ).click()
     
     # Randonmly choose the category
-    categ_choose = random.randint(1, 8)  
+    #categ_choose = random.randint(1, 8)  
     
     # Click at the choosen category
     categ_option_click = wait.until(EC.presence_of_element_located
-                            ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({categ_choose})")
+                            ((By.XPATH, f"/html/body/main/div/div/div[4]/form/div[3]/div[1]/div[2]/div[{categ_type}]")
                                 )
                             ).click()
     
@@ -81,31 +82,31 @@ for _ in range(plan_amount_int):
                         ).click()
     
     # Randonmly choose the subcategory
-    subcateg_choose = random.randint(1, 6)
+    subcateg_choose = random.randint(1, 4)
     
     # Click the choosen category
     subcateg_option_click = wait.until(EC.presence_of_element_located
-                            ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({subcateg_choose})")
+                            ((By.XPATH, f"/html/body/main/div/div/div[4]/form/div[3]/div[2]/div[2]/div[{subcateg_choose}]")
                                 )
                             ).click()
     
     # Set up names
     name = ""
-    if categ_choose == 1:
+    if categ_type == 1:
         name = "Carros"
-    elif categ_choose ==2:
+    elif categ_type ==2:
         name = "Motos"
-    elif categ_choose ==3:
+    elif categ_type ==3:
         name = "Trucks"
-    elif categ_choose ==4:
+    elif categ_type ==4:
         name = "Race"
-    elif categ_choose ==5:
+    elif categ_type ==5:
         name = "Drag"
-    elif categ_choose ==6:
+    elif categ_type ==6:
         name = "Peças"
-    elif categ_choose ==7:
+    elif categ_type ==7:
         name = "Serviços"
-    elif categ_choose ==8:
+    elif categ_type ==8:
         name = "Clássicos"
     
     # Inputs the plan name 
@@ -135,48 +136,52 @@ for _ in range(plan_amount_int):
                                 ).click()
     
     # Randonmly choose the time type
-    time_input = random.randint(1, 3)
-    if time_input == 1:
-        
-        # Ignore if the = 1
-        pass
-    else:
-        
-        # Choose the choosen time type
-        time_option_click = wait.until(EC.presence_of_element_located
-                                ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({time_input})")
-                                    )
-                                ).click()
+    time_input = random.randint(2, 3)
 
-    # Opens the comission dropdown
-    comission_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div[6]/div/div/div')
-                                                           )
-                                ).click()
+    # Choose the choosen time type
+    time_option_click = wait.until(EC.presence_of_element_located
+                            ((By.XPATH, f"/html/body/main/div/div/div[4]/form/div[5]/div/div[2]/div[2]/div[{time_input}]")
+                                )
+                            ).click()
     
     # Randonmly choose the comission 
-    comission_input =1# random.randint(1, 3)
+    comission_input = random.randint(1, 3)
     print(comission_input)
-    
-    # Click the choosen comission type
-    comission_option_click = wait.until(EC.presence_of_element_located
-                            ((By.CSS_SELECTOR, f".sc-5220e5de-12:nth-child({comission_input})")
-                                ))
-    
+
     # Condions according to the comission type
     if comission_input == 1:
         pass
     elif comission_input == 2:
         
-        # Click at the type and then inputs random percentage
-        comission_option_click.click()
+        # Opens the comission dropdown
+        comission_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div[6]/div/div/div')
+                                                            )
+                                    ).click()
+        
+        time.sleep(0.5)
+        
+        # Click the choosen comission type
+        comission_option_click = wait.until(EC.element_to_be_clickable
+                                ((By.XPATH, f"/html/body/main/div/div/div[4]/form/div[6]/div[1]/div/div[2]/div[{comission_input}]")
+                                    )).click()
+        
         random_percentage = random.randint(1,100)
         percentage = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='commissionValue']")
                                                     )
                         ).send_keys(random_percentage)
     elif comission_input == 3:
+        # Opens the comission dropdown
+        comission_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, '//form/div[6]/div/div/div')
+                                                            )
+                                    ).click()
         
-        # Click at the type and then inputs random value
-        comission_option_click.click()
+        time.sleep(0.5)
+        
+        # Click the choosen comission type
+        comission_option_click = wait.until(EC.element_to_be_clickable
+                                ((By.XPATH, f"/html/body/main/div/div/div[4]/form/div[6]/div[1]/div/div[2]/div[{comission_input}]")
+                                    )).click()
+        
         random_value2 = random.randint(1,999999)
         value = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='valuePerSale']")
                                                     )
@@ -205,7 +210,7 @@ for _ in range(plan_amount_int):
     
     # Click at done button
     done = wait.until(EC.presence_of_element_located
-                            ((By.CSS_SELECTOR, f".sc-5220e5de-6")
+                            ((By.XPATH, f"/html/body/main/div/div/div[4]/form/div[1]/div/button[2]")
                                 )
                             ).click()
     
@@ -216,6 +221,8 @@ for _ in range(plan_amount_int):
                             ).click()
 
     count += 1
+    
+    
     
 get_user_input("DONE")
 # Close the browser

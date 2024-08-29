@@ -12,12 +12,12 @@ import random
 import sys
 load_dotenv()
 
-ACC_NUM = "485955686"
-AGENCY = "4527"
+ACC_NUM = "274768-5"
+AGENCY = "3636"
 
-CARD_NUM = '5252693013790205'
-EXPI_DATE = '0725'
-CVV = '409'
+CARD_NUM = '5518843199127413'
+EXPI_DATE = '0726'
+CVV = '543'
 
 
 # Add the path to the directory containing the Functions module
@@ -50,29 +50,23 @@ except Exception as e:
     print(e)
 
 try:
-    # Click the login button
-    login_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hygPet')
+     # Click the login button
+    login_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eAOppz')
                                                         )
                             ).click() 
-
-    # Get login
-    login = get_user_input('Email')
 
     # Input login
     login_input = wait.until(EC.element_to_be_clickable((By.ID, 'email')
                                                         )
-                            ).send_keys(login)
-
-    # Get password
-    password = get_user_input('Password')
+                            ).send_keys(get_user_input('Email'))
 
     # Input password
     password_input = wait.until(EC.element_to_be_clickable((By.ID, 'password')
                                                         )
-                            ).send_keys(password)
+                            ).send_keys(get_user_input('Password'))
 
     # Logs in 
-    do_login = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eaqkjo')
+    do_login = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.fAJeQq')
                                                         )
                             ).click() 
 except Exception as e:
@@ -81,7 +75,7 @@ except Exception as e:
 
 try:
     # Click options
-    options = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.bNVGjx')
+    options = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.gzIVkm')
                                                         )
                             ).click() 
 

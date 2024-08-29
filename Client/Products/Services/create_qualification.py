@@ -39,14 +39,14 @@ except Exception as e:
 
 try:
     # Click the login button
-    login_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hygPet')
+    login_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eAOppz')
                                                         )
                             ).click() 
 
     # Input login
     login_input = wait.until(EC.element_to_be_clickable((By.ID, 'email')
                                                         )
-                            ).send_keys('mingau@gmail.com')
+                            ).send_keys('caos@gmail.com')
 
     # Input password
     password_input = wait.until(EC.element_to_be_clickable((By.ID, 'password')
@@ -54,9 +54,9 @@ try:
                             ).send_keys('12345678')
 
     # Logs in 
-    do_login = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eaqkjo')
+    do_login = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.fAJeQq')
                                                         )
-                            ).click() 
+                            ).click()  
 except Exception as e:
     print('There has been an error on the login')
     print(e)
@@ -64,18 +64,16 @@ except Exception as e:
 try:
     count = 1
     
-    # Click options
-    options = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.bNVGjx')
+    time.sleep(2)
+    
+    # Click sales
+    sales = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eAOppz')
                                                         )
                             ).click() 
-
-    # Click my profile option
-    my_sales_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/span[2]')
-                                                        )
-                            ).click()
     
-    amount = int(get_user_input("How many?"))
-    for i in range(amount):
+    amount_str = get_user_input("How many?")
+    amount_int = int(amount_str)
+    for i in range(amount_int):
         
         # Click add product button
         add_service_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[3]/div[2]/button[1]')
@@ -219,6 +217,8 @@ try:
         time.sleep(4)
         
         pyautogui.press('f5')
+        
+        time.sleep(2)
         
         count += 1
 except Exception as e:

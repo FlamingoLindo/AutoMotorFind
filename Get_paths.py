@@ -15,7 +15,7 @@ def get_image_paths(directory, extensions=None):
     return image_paths
 
 # Example usage:
-directory_path = r'Images\Veiculos\Bike'
+directory_path = r'Images\Partes'
 images = get_image_paths(directory_path)
 
 # Join all paths into a single string separated by spaces

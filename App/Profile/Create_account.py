@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
 import customtkinter as tk
-from tkinter import simpledialog
+from tkinter import simpledialog, messagebox
 import random
 import time  
 import os
@@ -28,8 +28,6 @@ def get_user_input(prompt):
     user_input = simpledialog.askstring("Input", prompt)
 
     return user_input
-
-
 
 screenshot_dir = r'Images\Screenshot'
 os.makedirs(screenshot_dir, exist_ok=True)
@@ -125,7 +123,7 @@ class TestAppium(unittest.TestCase):
                 phone2 = WebDriverWait(self.driver, 5).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("(00) 9 1234-56789")'))
                 ).send_keys(f'{rand_phone2}')
-                            
+                  
                 # Button click
                 next_btn2 = WebDriverWait(self.driver, 5).until(
                     EC.presence_of_element_located((AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(4)'))
@@ -214,7 +212,7 @@ class TestAppium(unittest.TestCase):
                 print(e)
                 break
             
-            time.sleep(0.5)
+            time.sleep(1)
             
             try:
                 # Select interests
@@ -298,6 +296,8 @@ class TestAppium(unittest.TestCase):
             print(f"Account {count} created ✅ \n ------------------------")
             
             count += 1
-                
+            
+        os.system('start chrome https://motorfind-master.netlify.app/users')
+
 if __name__ == '__main__':
     unittest.main()
