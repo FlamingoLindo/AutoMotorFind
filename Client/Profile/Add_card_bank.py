@@ -12,12 +12,12 @@ import random
 import sys
 load_dotenv()
 
-ACC_NUM = "274768-5"
-AGENCY = "3636"
+ACC_NUM = "1268529-1"
+AGENCY = "0277"
 
-CARD_NUM = '5518843199127413'
-EXPI_DATE = '0726'
-CVV = '543'
+CARD_NUM = '5164924809927058'
+EXPI_DATE = '1125'
+CVV = '875'
 
 
 # Add the path to the directory containing the Functions module

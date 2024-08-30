@@ -44,6 +44,10 @@ def buy_plan_go_back():
     
     time.sleep(6.2)
     
+    modal = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[3]/div/button')
+                                                        )
+                            ).click()
+    
     see_all_plans = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[1]/button')
                                                         )
                             ).click()
@@ -105,7 +109,7 @@ except Exception as e:
     print(e)
     
 try:
-    # 
+    """# 
     car_plan = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[3]/div[1]/div/div[7]/button')
                                                         )
                             ).click() 
@@ -117,7 +121,7 @@ try:
                                                         )
                             ).click() 
     
-    buy_plan_go_back()
+    buy_plan_go_back()"""
     
     # 
     truck_plan = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[3]/div[1]/div/div[8]/button')

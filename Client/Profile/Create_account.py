@@ -47,10 +47,8 @@ wait = WebDriverWait(driver, 5)
 
 count = 1
 
-account_amount_str = get_user_input("How many?")
-account_amount_int = int(account_amount_str)
-
-for _ in range(account_amount_int):
+account_amount = int(get_user_input("How many?"))
+for _ in range(account_amount):
     
     # Click the register button
     register_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[1]/div[2]/div[1]')
@@ -62,7 +60,7 @@ for _ in range(account_amount_int):
                                                     )
                         ).send_keys(create_random_name() +  f' Automatico (WEB) {count} ' + get_time())
     
-    # Inputs email
+    # Inputs email 
     email_input = wait.until(EC.element_to_be_clickable((By.ID, 'email')
                                                     )
                         ).send_keys(create_random_name() + f'@gmail.com')
@@ -127,7 +125,7 @@ for _ in range(account_amount_int):
                                                     )
                         ).send_keys(count)
 
-    time.sleep(1.5)
+    time.sleep(2)
     
     # Click next button 3
     next_btn3 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')
@@ -162,36 +160,35 @@ for _ in range(account_amount_int):
             
         count_inte += 1
 
-        
     # Click next button 5
-    next_btn5 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')
+    next_btn5 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/button')
                                                     )
                         ).click()
     
     # Agree to the terms and conditions
-    terms = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.jncpFj')
+    terms = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.cRqROF')
                                                     )
                         ).click()
     
     # Click the continue button
-    continue_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.FegBo')
+    continue_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.iwtfhs')
                                                     )
                         ).click()
     
     # Close modal
-    modal = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.dNCRpz')
+    modal = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.fCdUDm')
                                                     )
                         ).click()
     
     # Click the account menu
-    account_dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.bNVGjx')
+    account_dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.gzIVkm')
                                                     )
                         ).click()
         
     time.sleep(0.5)
     
     # Exit account
-    exit = wait.until(EC.presence_of_element_located((By.XPATH, '//html/body/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/span[8]')
+    exit = wait.until(EC.presence_of_element_located((By.XPATH, '//html/body/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/span[9]')
                                                     )
                         ).click()
     
@@ -200,7 +197,7 @@ for _ in range(account_amount_int):
     
     count +=1
 
-    time.sleep(1)
+    time.sleep(2)
 
 # Close the browser
 driver.quit()
