@@ -1,0 +1,237 @@
+{
+    "login": {
+      "senha": "Password",
+      "Lembrar-me": "Remember me",
+      "Entrar": "Login",
+      "Esqueci minha senha": "Forgot my password",
+      "cadastrar": "Singup"
+    },
+    "register":{
+        "cadastrar": "Register",
+        "Nome completo": "Full name",
+        "Celular": "Phone",
+        "Próximo": "Next"
+    },
+    "register/info": {
+        "cadastrar": "Register",
+        "CNPJ (opcional)": "CNPJ (optional)",
+        "Telefone (opcional)": "Telephone (optional)",
+        "Próximo": "Next"
+    },
+    "register/address": {
+        "cadastrar": "Register",
+        "País": "Country",
+        "Buscar": "Search",
+        "Endereço": "Address",
+        "Nome da rua": "Street name",
+        "Número": "Number",
+        "Bairro": "Neighborhood",
+        "Nome do bairro": "Neighborhood name",
+        "Cidade": "City",
+        "Nome da cidade": "City name",
+        "Estado": "State",
+        "Nome do estado": "State name",
+        "Complmento (opcional)": "Complment (optional)",
+        "Ex: casa, apto": "Ex: home, apt.",
+        "Próximo": "Next",
+        "Voltar": "Go back"
+    },
+    "register/password": {
+        "cadastrar": "Register",
+        "Senha": "Password",
+        "Confime a senha": "Password confimation",
+        "A senha deve conter": "The password must have",
+        "Mínimo de 6 caracteres": "6 characters minimum",
+        "Caractere epceial": "Special character",
+        "Número": "Number",
+        "Próximo": "Next",
+        "Voltar": "Go back"
+    },
+    "register/interests": {
+        "Interesses": "Interests",
+        "Marque os que você se identifica mais, escolha pelo menos 3 tópicos": "Choose what you identifies the with the most, select at least 3 topics",
+        "Carros": "Cars",
+        "Clássicos": "Classics",
+        "Peças": "Parts",
+        "Motos": "Bikes",
+        "Serviços": "Services",
+        "Voltar": "Go back",
+        "Próximo": "Next"
+    },
+    "register/terms": {
+        "Termos de Uso, Segurança, Política e Privacidade": "Terms of Use, Safety, Politics and Privacy",
+        "Termos de uso da empresa": "Company use terms",
+        "Termo de uso da plataforma": "Plataform use terms",
+        "Voltar":"Go back",
+        "Continuar": "Continue"
+    },
+    "?firstLogin=true": {
+        "Seja bem vindo(a)!": "Welcome!",
+        "Agora você tem o mundo automotivo em suas mãos.": "You now have the automotive world in your hands.",
+        "Continuar": "Continue"
+    },
+    "header": {
+      "vendas": "SALES",
+      "cadastrar": "SIGNUP",
+      "search": "Search in the website",
+      "Minhas Compras": "Purchases",
+      "Minhas Vendas": "Sales",
+      "Mensagens": "Messages",
+      "Meu perfil": "Profile",
+      "Minha Empresa": "Company",
+      "Redefinir senha": "Change password",
+      "Suporte": "Support",
+      "Termos de Uso": "User agreement",
+      "Sair": "Exit"
+    },
+    "myshooping": {
+        "minhas compras": "Purchases",
+        "Data/Hora": "Date/Hour",
+        "Valor": "Value",
+        "Pagamento": "Payment",
+        "Status do pedido": "Purchase status",
+        "Pago": "Payed",
+        "Cancelado": "Canceled",
+        "Pendente": "Pending",
+        "Crédito": "Credit"
+    },
+    "myshopping/rate/": {
+        "AVALIAR COMPRA": "RATE PURCHASE",
+        "Escolha de 1 a 5 rodinhas para classificar": "Choose from 1 to 5 wheels to rate",
+        "Cancelar": "Cancel",
+        "Enviar avaliação": "Send rating"
+    },
+    "myshopping/": {
+        "Voltar": "Go back",
+        "Compra": "Purchase",
+        "Detalhes": "Details",
+        "Vendedor": "Seller",
+        "Azul": "Blue",
+        "Vermelho": "Red",
+        "Verde": "Green",
+        "Amarelo": "Yellow",
+        "Preto": "Black",
+        "Data/Hora": "Date/Time",
+        "Pendente": "Pending",
+        "Pago": "Payed",
+        "Cancelado": "Canceled",
+        "Avaliar compra": "Rate purchase",
+        "Cancelar compra": "Cancel purchase",
+        "Câmbio": "Shift",
+        "Automático": "Automatic",
+        "Manual": "Manual",
+        "Peso": "Weight",
+        "Cor": "Color",
+        "Descrição": "Description",
+        "Chat com o vendedor": "Chat with the seller"
+
+    },
+    "EU NÃO SEI QUAL NOME DAR AQUI": {
+        "carros": "cars",
+        "motos": "bikes",
+        "pecas": "parts",
+        "servicos": "servicies",
+        "classicos": "classics",
+        "Hub automotivo digital": "Digital automotive hub",
+        "O mundo automotivo em suas mãos": "The automotive world in your hands"
+    },
+    "carhome": {
+      "Voltar": "Go back",
+      "CARROS": "CARS",
+      "destaques": "highlights",
+      "Ver todos": "See all",
+      "marcas": "brands",
+      "novidades": "",
+      "lojas": "stores",
+      "acompanhe o cenario": "keep up with the scenario",
+      "Vídeos": "Videos",
+      "Notícias": "News",
+      "Eventos": "Events"
+    },
+    "truckhome": {
+      "Voltar": "Go back",
+      "destaques": "highlights",
+      "Ver todos": "See all",
+      "marcas": "brands",
+      "novidades": "",
+      "lojas": "stores",
+      "acompanhe o cenario": "keep up with the scenario",
+      "Vídeos": "Videos",
+      "Notícias": "News",
+      "Eventos": "Events"
+    },
+    "motohome": {
+      "Voltar": "Go back",
+      "MOTOS": "BIKES",
+      "destaques": "highlights",
+      "Ver todos": "See all",
+      "marcas": "brands",
+      "novidades": "",
+      "lojas": "stores",
+      "acompanhe o cenario": "keep up with the scenario",
+      "Vídeos": "Videos",
+      "Notícias": "News",
+      "Eventos": "Events"
+    },
+    "racehome": {
+      "Voltar": "Go back",
+      "destaques": "highlights",
+      "Ver todos": "See all",
+      "marcas": "brands",
+      "novidades": "",
+      "lojas": "stores",
+      "acompanhe o cenario": "keep up with the scenario",
+      "Vídeos": "Videos",
+      "Notícias": "News",
+      "Eventos": "Events"
+    },
+    "draghome": {
+      "Voltar": "Go back",
+      "destaques": "highlights",
+      "Ver todos": "See all",
+      "marcas": "brands",
+      "novidades": "",
+      "lojas": "stores",
+      "acompanhe o cenario": "keep up with the scenario",
+      "Vídeos": "Videos",
+      "Notícias": "News",
+      "Eventos": "Events"
+    },
+    "classichome": {
+      "Voltar": "Go back",
+      "CLASSICOS": "CLASSICS",
+      "destaques": "highlights",
+      "Ver todos": "See all",
+      "marcas": "brands",
+      "novidades": "",
+      "lojas": "stores",
+      "acompanhe o cenario": "keep up with the scenario",
+      "Vídeos": "Videos",
+      "Notícias": "News",
+      "Eventos": "Events"
+    },
+    "servicehome": {
+      "SERVICOS": "SERVICES",
+      "destaques": "highlights",
+      "Ver todos": "See all",
+      "Serviços": "Services",
+      "Qualificação": "Qualifications",
+      "CURSOS": "COURSES",
+      "GRADUACAO": "GRADUATION",
+      "ESPECIALIZACAO": "SPECIALIZATION"
+    },
+    "home": {
+        "destaques": "highlights",
+        "Ver todos":"See all",
+        "marcas": "brands",
+        "novidades": "",
+        "lojas": "stores",
+        "mais acessados": "most accessed",
+        "servicos": "servicies",
+        "pecas em destaque": "highlighted parts",
+        "acompanhe o cenario": "keep up with the scenario",
+        "Vídeos": "Videos",
+        "Notícias": "News",
+        "Eventos": "Events"
+    }
+  }

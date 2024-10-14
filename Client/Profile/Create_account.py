@@ -58,12 +58,12 @@ for _ in range(account_amount):
     # Inputs name
     name_input = wait.until(EC.element_to_be_clickable((By.ID, 'name')
                                                     )
-                        ).send_keys(create_random_name() +  f' Automatico (WEB) {count} ' + get_time())
+                        ).send_keys(create_random_name() +  f'venda')
     
     # Inputs email 
     email_input = wait.until(EC.element_to_be_clickable((By.ID, 'email')
                                                     )
-                        ).send_keys(create_random_name() + f'@gmail.com')
+                        ).send_keys(create_random_name() + f'flamingolindo@aaathats3as.com')
     
     # Generate random phone number (1)
     rand_phone = random.randint(11111111111, 99999999999)
@@ -83,7 +83,7 @@ for _ in range(account_amount):
                         ).send_keys(gera_e_valida_cpf())
     
     
-    """# Inputs random CPNJ
+    # Inputs random CPNJ
     cnpj_input = wait.until(EC.element_to_be_clickable((By.ID, 'cnpj')
                                                     )
                         ).send_keys(gera_cnpj())
@@ -93,7 +93,7 @@ for _ in range(account_amount):
     # Inputs random telephone number
     telephone_input = wait.until(EC.element_to_be_clickable((By.ID, 'telephone')
                                                     )
-                        ).send_keys(rand_telephone)"""
+                        ).send_keys(rand_telephone)
     
     # Click next button 2
     next_btn2 = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/form/button')

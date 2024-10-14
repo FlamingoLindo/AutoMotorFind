@@ -39,24 +39,24 @@ except Exception as e:
 
 try:
     # Click the login button
-    login_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.hygPet')
+    login_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eAOppz')
                                                         )
                             ).click() 
 
     # Input login
     login_input = wait.until(EC.element_to_be_clickable((By.ID, 'email')
                                                         )
-                            ).send_keys('caos@gmail.com')
+                            ).send_keys(get_user_input('Email'))
 
     # Input password
     password_input = wait.until(EC.element_to_be_clickable((By.ID, 'password')
                                                         )
-                            ).send_keys('12345678')
+                            ).send_keys(get_user_input('Password'))
 
     # Logs in 
-    do_login = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.eaqkjo')
+    do_login = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.fAJeQq')
                                                         )
-                            ).click() 
+                            ).click()
 except Exception as e:
     print('There has been an error on the login')
     print(e)
@@ -81,13 +81,13 @@ try:
         
     for _ in range(int(get_user_input('How many'))):
         
-        message_area = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[3]/textarea')
+        message_area = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.fPlqIq')
                                                             )
                                 )
-        message_area.click()
-        message_area.send_keys('a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a aa a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a aa a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a aa a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a aa a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a aa a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a aa a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a') 
         
-        send_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[3]/img')
+        message_area.send_keys('a a a a a a a a a a a a a a a a a a a a a a a a') 
+        
+        send_btn = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.fKTyJf')
                                                             )
                                 ).click() 
     
