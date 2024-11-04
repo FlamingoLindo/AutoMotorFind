@@ -7,7 +7,7 @@ import time
 driver = webdriver.Chrome()
 wait = WebDriverWait(driver, 5)
 
-driver.get('https://motorfind-client.netlify.app/partshome/news')
+driver.get('https://motorfind-client.netlify.app/servicehome/all')
 
 service_page = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.jGYlfK')))
 
