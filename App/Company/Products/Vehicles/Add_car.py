@@ -258,6 +258,7 @@ class TestAppium(unittest.TestCase):
                 
                 # Swipes to the bottom of the page
                 self.driver.swipe(start_x=500, start_y=1600, end_x=500, end_y=700, duration=80)
+                self.driver.tap(positions=(1,2))
                 
                 # Generate random power
                 rand_power = random.randint(1, 9999)
